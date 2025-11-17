@@ -5,3 +5,21 @@
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ebmjs")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Temp" type="Label" parent="."]
+editor_description = "Temporary background to show that the current player character is capable of moving, and that a camera is following and centered on the player."
+offset_left = -543.0
+offset_top = -289.0
+offset_right = 533.0
+offset_bottom = 284.0
+theme_override_font_sizes/font_size = 50
+text = "BACKGROUND BACKGROUND BACKGROUND
+BACKGROUND BACKGROUND BACKGROUND
+BACKGROUND BACKGROUND BACKGROUND
+BACKGROUND BACKGROUND BACKGROUND
+BACKGROUND BACKGROUND BACKGROUND
+BACKGROUND BACKGROUND BACKGROUND
+BACKGROUND BACKGROUND BACKGROUND
+BACKGROUND BACKGROUND BACKGROUND"
