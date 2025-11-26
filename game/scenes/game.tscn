@@ -1,14 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://4pqund3nukl7"]
+[gd_scene load_steps=3 format=3 uid="uid://4pqund3nukl7"]
 
-[ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://Scenes/player.tscn" id="1_ebmjs"]
+[ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://characters/player/scenes/player.tscn" id="1_7aouk"]
+[ext_resource type="PackedScene" uid="uid://tn1x41u8qc2e" path="res://test/scenes/test_enemy.tscn" id="2_vv3et"]
 
 [node name="Game" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_ebmjs")]
+[node name="Player" parent="." instance=ExtResource("1_7aouk")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
 
-[node name="Temp" type="Label" parent="."]
+[node name="TempBackground" type="Label" parent="."]
 editor_description = "Temporary background to show that the current player character is capable of moving, and that a camera is following and centered on the player."
 offset_left = -543.0
 offset_top = -289.0
@@ -23,3 +25,6 @@ BACKGROUND BACKGROUND BACKGROUND
 BACKGROUND BACKGROUND BACKGROUND
 BACKGROUND BACKGROUND BACKGROUND
 BACKGROUND BACKGROUND BACKGROUND"
+
+[node name="TestEnemy" parent="." instance=ExtResource("2_vv3et")]
+position = Vector2(512, 0)
