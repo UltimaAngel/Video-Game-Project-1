@@ -10,10 +10,19 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="Video Game Project 1"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 
 [dotnet]
 
 project/assembly_name="New Game Project"
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_5="Walls"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
