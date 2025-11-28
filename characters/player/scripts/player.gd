@@ -8,7 +8,6 @@ extends CharacterBody2D
 #    https://www.youtube.com/playlist?list=PLfcCiyd_V9GH8M9xd_QKlyU8jryGcy3Xa
 
 var cardinal_direction : Vector2 = Vector2.DOWN
-var health : float = 100.0
 var input_direction : Vector2 = Vector2.ZERO
 var speed : float = 300.0
 var state : String = "idle"
@@ -52,9 +51,9 @@ func set_direction() -> bool:
 		
 	cardinal_direction = new_dir
 	
-	# Flip player sprite across x axis. Doing it this way instead of setting flip_h
-	# allows us to also flip children of Sprite2D node, should we desire to do so 
-	# in the future.
+	# Scale the player sprite across x axis. Doing it this way instead of setting 
+	# flip_h allows us to also "flip" children of Sprite2D node when the player 
+	# sprite "flips", should we desire to do so in the future.
 	player_sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
 	return true
 
@@ -82,12 +81,5 @@ func _physics_process(_delta):
 	move_and_slide()
 
 
-# Check if Player's health is 0 every frame.
 func _process(_delta):
-	if (health == 0):
-		get_tree().reload_current_scene()
-
-
-# For now, anything in Layer 3 (melee attacks) that enters the hitbox will kill the player
-func _on_hit_box_area_entered(area):
-	health = 0
+	pass

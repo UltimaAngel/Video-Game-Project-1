@@ -1,7 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bo0pwsa6hw5ue"]
+[gd_scene load_steps=15 format=3 uid="uid://bo0pwsa6hw5ue"]
 
 [ext_resource type="Script" uid="uid://b6fbiyjuwntgn" path="res://characters/player/scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://ceibfuodxat68" path="res://characters/player/assets/player_sprite02.png" id="2_cvnsp"]
+[ext_resource type="PackedScene" uid="uid://bdu6v3fhcn53g" path="res://components/health_component/health_component.tscn" id="3_41mm0"]
+[ext_resource type="PackedScene" uid="uid://cxnwhytyj6sg6" path="res://components/hitbox_component/hitbox_component.tscn" id="4_2pynv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ittr2"]
 radius = 8.062258
@@ -148,16 +150,18 @@ texture = ExtResource("2_cvnsp")
 hframes = 16
 vframes = 3
 
+[node name="HealthComponent" parent="." instance=ExtResource("3_41mm0")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 show_behind_parent = true
 position = Vector2(0, 20)
 shape = SubResource("CircleShape2D_ittr2")
 
-[node name="HitBox" type="Area2D" parent="."]
-collision_layer = 0
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_2pynv")]
 collision_mask = 4
+health_component = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CapsuleShape2D_vgqql")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -165,4 +169,4 @@ libraries = {
 &"": SubResource("AnimationLibrary_p04ig")
 }
 
-[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
