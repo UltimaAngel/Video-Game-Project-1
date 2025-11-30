@@ -40,12 +40,12 @@ func set_direction() -> bool:
 		
 	var new_dir : Vector2 = cardinal_direction
 	
-	if input_direction.y == 0:
+	if abs(input_direction.x) >= abs(input_direction.y):
 		new_dir = Vector2.LEFT if input_direction.x < 0 else Vector2.RIGHT
-	elif input_direction.x == 0:
+	else:
 		new_dir = Vector2.UP if input_direction.y < 0 else Vector2.DOWN
 	
-	# Note that diagonal movement will also not change the sprite direction
+	# Note that diagonal movement will not change the sprite direction
 	if new_dir == cardinal_direction:
 		return false
 		
