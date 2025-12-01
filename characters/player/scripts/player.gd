@@ -39,8 +39,12 @@ func set_direction() -> bool:
 		return false
 		
 	var new_dir : Vector2 = cardinal_direction
+	var abs_x : float = abs(input_direction.x)
+	var abs_y : float = abs(input_direction.y)
 	
-	if abs(input_direction.x) > abs(input_direction.y):
+	if abs_x == abs_y:
+		return false
+	elif abs_x > abs_y:
 		new_dir = Vector2.LEFT if input_direction.x < 0 else Vector2.RIGHT
 	else:
 		new_dir = Vector2.UP if input_direction.y < 0 else Vector2.DOWN
