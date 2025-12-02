@@ -38,6 +38,8 @@ func anim_direction() -> String:
 			return "side"
 		Vector2.UP:
 			return "up"
+		Vector2.DOWN:
+			return "down"
 		_:
 			return "down"
 
@@ -58,10 +60,10 @@ func set_direction() -> bool:
 	# Keep same sprite direction if player stops moving
 	if _input_direction == Vector2.ZERO:
 		return false
-		
-	var new_dir : Vector2 = _cardinal_direction
+	
 	var abs_x : float = abs(_input_direction.x)
 	var abs_y : float = abs(_input_direction.y)
+	var new_dir : Vector2 = _cardinal_direction
 	
 	# Perfectly diagonal movement will not change the sprite direction
 	if abs_x == abs_y:
