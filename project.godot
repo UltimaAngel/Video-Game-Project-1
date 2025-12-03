@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="New Game Project"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
+
 [input]
 
 left={

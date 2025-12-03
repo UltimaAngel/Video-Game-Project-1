@@ -1,18 +1,19 @@
 extends CharacterBody2D
 ## Player code including movement and states.
-## 
+##
 ## A portion of the code in this script (regarding playing idle/walking animations)
-## is directly inspired by or taken from Michael Games's "Make a 2D Action & Adventure 
+## is directly inspired by or taken from Michael Games's "Make a 2D Action & Adventure
 ## RPG in Godot 4" tutorial series on YouTube:
 ## https://www.youtube.com/playlist?list=PLfcCiyd_V9GH8M9xd_QKlyU8jryGcy3Xa
 
-@export var animation_player : AnimationPlayer
-@export var player_sprite : Sprite2D
-var speed : float = 300.0
+@export var animation_player: AnimationPlayer
+@export var player_sprite: Sprite2D
+
+var speed: float = 300.0
 var _cardinal_direction := Vector2.DOWN:
 	set = set_cardinal_direction
 var _input_direction := Vector2.ZERO
-var _state : String = "idle"
+var _state: String = "idle"
 
 
 func _ready():
@@ -60,11 +61,11 @@ func set_direction() -> bool:
 	# Keep same sprite direction if player stops moving
 	if _input_direction == Vector2.ZERO:
 		return false
-	
-	var abs_x : float = abs(_input_direction.x)
-	var abs_y : float = abs(_input_direction.y)
-	var new_dir : Vector2 = _cardinal_direction
-	
+
+	var abs_x: float = abs(_input_direction.x)
+	var abs_y: float = abs(_input_direction.y)
+	var new_dir: Vector2 = _cardinal_direction
+
 	# Perfectly diagonal movement will not change the sprite direction
 	if abs_x == abs_y:
 		return false
@@ -72,7 +73,7 @@ func set_direction() -> bool:
 		new_dir = Vector2.LEFT if _input_direction.x < 0 else Vector2.RIGHT
 	else:
 		new_dir = Vector2.UP if _input_direction.y < 0 else Vector2.DOWN
-	
+
 	if new_dir == _cardinal_direction:
 		return false
 	_cardinal_direction = new_dir
@@ -80,7 +81,7 @@ func set_direction() -> bool:
 
 
 func set_state() -> bool:
-	var new_state : String = "idle" if _input_direction == Vector2.ZERO else "walk"
+	var new_state: String = "idle" if _input_direction == Vector2.ZERO else "walk"
 	if new_state == _state:
 		return false
 	_state = new_state
