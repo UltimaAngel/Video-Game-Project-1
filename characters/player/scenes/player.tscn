@@ -140,10 +140,12 @@ _data = {
 &"walk_up": SubResource("Animation_2kdo7")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "player_sprite")]
 top_level = true
 collision_mask = 19
 script = ExtResource("1_cvnsp")
+animation_player = NodePath("AnimationPlayer")
+player_sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cvnsp")
@@ -168,5 +170,3 @@ shape = SubResource("CapsuleShape2D_vgqql")
 libraries = {
 &"": SubResource("AnimationLibrary_p04ig")
 }
-
-[connection signal="area_entered" from="HitboxComponent" to="." method="_on_hitbox_component_area_entered"]
