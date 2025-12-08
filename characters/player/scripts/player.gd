@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 ## Player code including movement and states.
 ##
