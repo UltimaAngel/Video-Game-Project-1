@@ -62,10 +62,11 @@ click={
 
 [layer_names]
 
-2d_physics/layer_1="Characters"
+2d_physics/layer_1="Player"
 2d_physics/layer_2="Objects"
 2d_physics/layer_3="Melee Attacks"
 2d_physics/layer_5="Walls"
+2d_physics/layer_9="Enemy"
 
 [rendering]
 
