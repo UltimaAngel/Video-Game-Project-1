@@ -73,9 +73,13 @@ func set_direction() -> bool:
 	var abs_y: float = abs(_input_direction.y)
 	var new_dir: Vector2 = _cardinal_direction
 
-	# Perfectly diagonal movement will not change the sprite direction
+	# Diagonal movement will not change the sprite direction
 	if abs_x == abs_y:
-		return false
+		if _cardinal_direction.x != 0:
+			new_dir.x = -1 if _input_direction.x < 0 else 1
+		else:
+			new_dir.y = -1 if _input_direction.y < 0 else 1
+		#return false
 	elif abs_x > abs_y:
 		new_dir = Vector2.LEFT if _input_direction.x < 0 else Vector2.RIGHT
 	else:
