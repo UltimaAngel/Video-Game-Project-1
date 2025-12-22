@@ -1,10 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://4pqund3nukl7"]
+[gd_scene load_steps=3 format=3 uid="uid://4pqund3nukl7"]
 
 [ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://characters/player/scenes/player.tscn" id="1_7aouk"]
-[ext_resource type="Script" uid="uid://cdowj2otqtidw" path="res://characters/player/scripts/player_state_machine.gd" id="2_ykdcs"]
 [ext_resource type="PackedScene" uid="uid://clc62kh1t0g6n" path="res://dungeon/map_01.tscn" id="3_vv3et"]
-[ext_resource type="Script" uid="uid://0hr7ht1p5pyl" path="res://characters/player/scripts/state_idle.gd" id="3_ykdcs"]
-[ext_resource type="Script" uid="uid://dlyqpe5jh0hs6" path="res://characters/player/scripts/state_walk.gd" id="4_ykdcs"]
 
 [node name="Game" type="Node2D"]
 
@@ -13,14 +10,5 @@ position = Vector2(582, 314)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2, 2)
-
-[node name="StateMachine" type="Node" parent="Player"]
-script = ExtResource("2_ykdcs")
-
-[node name="Idle" type="Node" parent="Player/StateMachine"]
-script = ExtResource("3_ykdcs")
-
-[node name="Walk" type="Node" parent="Player/StateMachine"]
-script = ExtResource("4_ykdcs")
 
 [node name="Map-01" parent="." instance=ExtResource("3_vv3et")]
