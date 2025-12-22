@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 ## Player code including movement and states.
 ##
@@ -9,25 +10,32 @@ extends CharacterBody2D
 @export var animation_player: AnimationPlayer
 @export var player_sprite: Sprite2D
 
-var speed: float = 300.0
+#var speed: float = 300.0
 var _cardinal_direction := Vector2.DOWN:
 	set = set_cardinal_direction
 var _input_direction := Vector2.ZERO
-var _state: String = "idle"
+#var direction : Vector2 = Vector2.ZERO
+#var _state: String = "idle"
+
+@onready var state_machine: PlayerStateMachine = $StateMachine
 
 
 func _ready():
-	update_animation()
+	state_machine.Initiialize(self)
+	#update_animation()
 
 
 func _process(_delta):
-	pass
+	_input_direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+	_input_direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	_input_direction = _input_direction.normalized()
+	#_input_direction = Input.get_vector("left", "right", "up", "down")
 
 
 func _physics_process(_delta):
-	get_input()
-	if set_state() or set_direction():
-		update_animation()
+	#get_input()
+	#if set_state() or set_direction():
+	#update_animation()
 	move_and_slide()
 
 
@@ -44,10 +52,9 @@ func anim_direction() -> String:
 		_:
 			return "down"
 
-
-func get_input() -> void:
-	_input_direction = Input.get_vector("left", "right", "up", "down")
-	velocity = _input_direction * speed
+	#func get_input() -> void:
+	#_input_direction = Input.get_vector("left", "right", "up", "down")
+	#velocity = _input_direction * speed
 
 
 func set_cardinal_direction(value) -> void:
@@ -66,9 +73,13 @@ func set_direction() -> bool:
 	var abs_y: float = abs(_input_direction.y)
 	var new_dir: Vector2 = _cardinal_direction
 
-	# Perfectly diagonal movement will not change the sprite direction
+	# Diagonal movement will not change the sprite direction
 	if abs_x == abs_y:
-		return false
+		if _cardinal_direction.x != 0:
+			new_dir.x = -1 if _input_direction.x < 0 else 1
+		else:
+			new_dir.y = -1 if _input_direction.y < 0 else 1
+		#return false
 	elif abs_x > abs_y:
 		new_dir = Vector2.LEFT if _input_direction.x < 0 else Vector2.RIGHT
 	else:
@@ -79,14 +90,13 @@ func set_direction() -> bool:
 	_cardinal_direction = new_dir
 	return true
 
+	#func set_state() -> bool:
+	#var new_state: String = "idle" if _input_direction == Vector2.ZERO else "walk"
+	#if new_state == _state:
+	#return false
+	#_state = new_state
+	#return true
 
-func set_state() -> bool:
-	var new_state: String = "idle" if _input_direction == Vector2.ZERO else "walk"
-	if new_state == _state:
-		return false
-	_state = new_state
-	return true
 
-
-func update_animation() -> void:
-	animation_player.play(_state + "_" + anim_direction())
+func update_animation(state: String) -> void:
+	animation_player.play(state + "_" + anim_direction())
