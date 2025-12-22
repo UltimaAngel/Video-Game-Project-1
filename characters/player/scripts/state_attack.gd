@@ -3,10 +3,14 @@ extends State
 
 var attacking: bool = false
 
+@export var attack_sound: AudioStream
+@export_range(1, 20, 0.5) var decel_speed: float = 5.0
+
 @onready var animation_player: AnimationPlayer = $"../../AnimationPlayer"
 @onready var attack_anim: AnimationPlayer = $"../../Sprite2D/AttackEffectSprite/AttackEffectAnimation"
 @onready var idle: State = $"../Idle"
 @onready var walk: State = $"../Walk"
+@onready var audio: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
 
 
 # Player enters State
@@ -14,6 +18,9 @@ func Enter() -> void:
 	player.update_animation("attack")
 	attack_anim.play("attack_" + player.anim_direction())
 	animation_player.animation_finished.connect(EndAttack)
+	audio.stream = attack_sound
+	audio.pitch_scale = randf_range(0.9, 1.1)
+	audio.play()
 	attacking = true
 
 
@@ -25,7 +32,7 @@ func Exit() -> void:
 
 
 func Process(_delta: float) -> State:
-	player.velocity = Vector2.ZERO
+	player.velocity -= player.velocity * decel_speed * _delta
 
 	if attacking == false:
 		if player._input_direction == Vector2.ZERO:
