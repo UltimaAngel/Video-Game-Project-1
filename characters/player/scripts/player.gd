@@ -19,6 +19,8 @@ var _input_direction := Vector2.ZERO
 
 @onready var state_machine: PlayerStateMachine = $StateMachine
 
+signal DirectionChanged(new_direction: Vector2)
+
 
 func _ready():
 	state_machine.Initiialize(self)
@@ -88,6 +90,7 @@ func set_direction() -> bool:
 	if new_dir == _cardinal_direction:
 		return false
 	_cardinal_direction = new_dir
+	DirectionChanged.emit(new_dir)
 	return true
 
 	#func set_state() -> bool:
