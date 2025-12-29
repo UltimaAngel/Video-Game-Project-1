@@ -35,7 +35,7 @@ func Process(_delta: float) -> State:
 	player.velocity -= player.velocity * decel_speed * _delta
 
 	if attacking == false:
-		if player._input_direction == Vector2.ZERO:
+		if player.direction == Vector2.ZERO:
 			return idle
 		else:
 			return walk
