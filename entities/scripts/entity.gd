@@ -33,17 +33,17 @@ func anim_direction() -> String:
 			return "down"
 
 
-func set_cardinal_direction(value) -> void:
-	# Scale sprite across x axis. This particular method allows us to also flip
-	# children of Sprite2D node.
+func set_cardinal_direction(value: Vector2) -> void:
+	# Scale the player sprite across x axis. This particular method allows us to
+	# also "flip" children of Sprite2D node.
 	cardinal_direction = value
 	entity_sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
 
 
-func set_direction(value) -> void:
+func set_direction(value: Vector2) -> void:
 	direction = value
 
-	# Keep same sprite direction if entity stops moving
+	# Keep same sprite direction if player stops moving
 	if value == Vector2.ZERO:
 		return
 
