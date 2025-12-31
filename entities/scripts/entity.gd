@@ -1,6 +1,6 @@
 class_name Entity
 extends CharacterBody2D
-## Code including movement and states.
+## The class that the Player, Enemies, and NPCs will derive from.
 ##
 ## A portion of the code in this script is directly inspired by or taken from Michael
 ## Games's "Make a 2D Action & Adventure RPG in Godot 4" tutorial series on YouTube:
@@ -13,6 +13,7 @@ var cardinal_direction := Vector2.DOWN:
 	set = set_cardinal_direction
 var direction := Vector2.ZERO:
 	set = set_direction
+var invulnerable: bool = false
 
 
 func _physics_process(_delta):
@@ -21,16 +22,12 @@ func _physics_process(_delta):
 
 func anim_direction() -> String:
 	match cardinal_direction:
-		Vector2.LEFT:
-			return "side"
-		Vector2.RIGHT:
-			return "side"
 		Vector2.UP:
 			return "up"
 		Vector2.DOWN:
 			return "down"
 		_:
-			return "down"
+			return "side"
 
 
 func set_cardinal_direction(value: Vector2) -> void:

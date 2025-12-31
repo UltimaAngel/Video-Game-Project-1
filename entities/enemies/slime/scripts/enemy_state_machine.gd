@@ -1,4 +1,4 @@
-class_name PlayerStateMachine
+class_name EnemyStateMachine
 extends Node
 
 var states: Array[State]
@@ -13,18 +13,18 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	ChangeState(current_state.process(delta))
+	change_state(current_state.process(delta))
 
 
 func _physics_process(delta: float) -> void:
-	ChangeState(current_state.physics(delta))
+	change_state(current_state.physics(delta))
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	ChangeState(current_state.handle_input(event))
+	change_state(current_state.handle_input(event))
 
 
-func Initialize(_player: Player) -> void:
+func init(_enemy: Entity) -> void:
 	states = []
 
 	for c in get_children():
@@ -32,12 +32,12 @@ func Initialize(_player: Player) -> void:
 			states.append(c)
 
 	if states.size() > 0:
-		states[0].entity = _player
-		ChangeState(states[0])
+		states[0].entity = _enemy
+		change_state(states[0])
 		process_mode = Node.PROCESS_MODE_INHERIT
 
 
-func ChangeState(new_state: State) -> void:
+func change_state(new_state: State) -> void:
 	if new_state == null || new_state == current_state:
 		return
 
