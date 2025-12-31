@@ -24,7 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	ChangeState(current_state.HandleInput(event))
 
 
-func Initiialize(_player: Player) -> void:
+func Initialize(_player: Player) -> void:
 	states = []
 
 	for c in get_children():
