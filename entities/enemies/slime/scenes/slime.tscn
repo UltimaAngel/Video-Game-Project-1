@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://canu8q4nsyg2a"]
 
 [ext_resource type="Texture2D" uid="uid://mklv7yqx13jf" path="res://entities/enemies/slime/assets/slime.png" id="1_2mbw8"]
-[ext_resource type="Texture2D" uid="uid://dxrcvufr5s2w2" path="res://entities/assets/Shadow.png" id="1_ncw7u"]
+[ext_resource type="Texture2D" uid="uid://ctujvqdes0gru" path="res://entities/assets/shadow.png" id="1_ncw7u"]
 [ext_resource type="PackedScene" uid="uid://bdu6v3fhcn53g" path="res://components/health_component/health_component.tscn" id="2_co1cg"]
 [ext_resource type="PackedScene" uid="uid://cxnwhytyj6sg6" path="res://components/hitbox_component/hitbox_component.tscn" id="3_natf5"]
 
