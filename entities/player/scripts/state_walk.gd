@@ -1,6 +1,8 @@
 class_name State_Walk
 extends State
 
+var prev_dir := Vector2.ZERO
+
 @export var move_speed: float = 300.0
 
 @onready var idle: State = $"../Idle"
@@ -22,6 +24,10 @@ func Process(_delta: float) -> State:
 		return idle
 
 	player.velocity = player.direction * move_speed
+
+	if player.direction != prev_dir:
+		player.update_animation("walk")
+
 	return null
 
 
