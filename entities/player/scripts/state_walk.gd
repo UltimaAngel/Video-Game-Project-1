@@ -1,7 +1,7 @@
 class_name State_Walk
 extends State
 
-var prev_dir := Vector2.ZERO
+var _prev_dir := Vector2.ZERO
 
 @export var move_speed: float = 300.0
 
@@ -25,7 +25,7 @@ func Process(_delta: float) -> State:
 
 	player.velocity = player.direction * move_speed
 
-	if player.direction != prev_dir:
+	if player.direction != _prev_dir:
 		player.update_animation("walk")
 
 	return null
