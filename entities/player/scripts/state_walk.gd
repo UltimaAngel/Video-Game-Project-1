@@ -27,7 +27,7 @@ func Process(_delta: float) -> State:
 
 	if player.direction != _prev_dir:
 		player.update_animation("walk")
-
+	_prev_dir = player.direction
 	return null
 
 
