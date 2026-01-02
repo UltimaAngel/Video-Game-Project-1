@@ -1,9 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://canu8q4nsyg2a"]
+[gd_scene load_steps=16 format=3 uid="uid://canu8q4nsyg2a"]
 
 [ext_resource type="Texture2D" uid="uid://mklv7yqx13jf" path="res://entities/enemies/slime/assets/slime.png" id="1_2mbw8"]
 [ext_resource type="Texture2D" uid="uid://ctujvqdes0gru" path="res://entities/assets/shadow.png" id="1_ncw7u"]
+[ext_resource type="Script" uid="uid://b1ihahburujab" path="res://entities/enemies/slime/scripts/slime.gd" id="1_umckf"]
 [ext_resource type="PackedScene" uid="uid://bdu6v3fhcn53g" path="res://components/health_component/health_component.tscn" id="2_co1cg"]
 [ext_resource type="PackedScene" uid="uid://cxnwhytyj6sg6" path="res://components/hitbox_component/hitbox_component.tscn" id="3_natf5"]
+[ext_resource type="Script" uid="uid://dprwl3r0qoqye" path="res://entities/scripts/state_machine.gd" id="6_fbeu0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umckf"]
 radius = 5.0
@@ -221,9 +223,12 @@ _data = {
 &"walk_up": SubResource("Animation_8hb4w")
 }
 
-[node name="Slime" type="CharacterBody2D"]
+[node name="Slime" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "entity_sprite")]
 collision_layer = 256
 collision_mask = 16
+script = ExtResource("1_umckf")
+animation_player = NodePath("AnimationPlayer")
+entity_sprite = NodePath("Sprite2D")
 
 [node name="ShadowSprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.5411765, 0.21176471, 0, 1)
@@ -251,3 +256,12 @@ libraries = {
 &"": SubResource("AnimationLibrary_6xq2y")
 }
 autoplay = "idle_down"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("6_fbeu0")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+
+[node name="Walk" type="Node" parent="StateMachine"]
+
+[node name="Attack" type="Node" parent="StateMachine"]

@@ -2,7 +2,7 @@ class_name State
 extends Node
 
 # Reference to Entity the State belongs to
-static var entity: Entity
+var entity: Entity
 
 
 func _ready() -> void:

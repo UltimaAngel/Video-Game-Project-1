@@ -1,7 +1,7 @@
 class_name Player
 extends Entity
 
-@onready var state_machine: PlayerStateMachine = $StateMachine
+@export var state_machine: StateMachine
 
 
 func _ready():
