@@ -1,4 +1,4 @@
-class_name Player
+class_name OldPlayer
 extends CharacterBody2D
 ## Player code including movement and states.
 ##
