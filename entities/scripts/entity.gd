@@ -62,7 +62,6 @@ func set_direction(value: Vector2) -> void:
 	if new_dir == cardinal_direction:
 		return
 	cardinal_direction = new_dir
-	update_animation("walk")
 
 
 func update_animation(state: String) -> void:
