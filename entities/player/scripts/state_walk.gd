@@ -23,11 +23,11 @@ func process(_delta: float) -> State:
 	if entity.direction == Vector2.ZERO:
 		return idle
 
-	player.velocity = player.direction * move_speed
+	entity.velocity = entity.direction * move_speed
 
-	if player.direction != _prev_dir:
-		player.update_animation("walk")
-	_prev_dir = player.direction
+	if entity.direction != _prev_dir:
+		entity.update_animation("walk")
+	_prev_dir = entity.direction
 	return null
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bo0pwsa6hw5ue"]
+[gd_scene load_steps=31 format=3 uid="uid://bo0pwsa6hw5ue"]
 
 [ext_resource type="Script" uid="uid://b6fbiyjuwntgn" path="res://entities/player/scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://ceibfuodxat68" path="res://entities/player/assets/player_sprite02.png" id="2_cvnsp"]
@@ -7,9 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://ch0gwwm7u37ih" path="res://entities/player/assets/attack_sprite01.png" id="3_gy3q1"]
 [ext_resource type="PackedScene" uid="uid://cxnwhytyj6sg6" path="res://components/hitbox_component/hitbox_component.tscn" id="4_2pynv"]
 [ext_resource type="Script" uid="uid://0hr7ht1p5pyl" path="res://entities/player/scripts/state_idle.gd" id="6_2suro"]
-[ext_resource type="Script" uid="uid://dprwl3r0qoqye" path="res://entities/scripts/state_machine.gd" id="7_6oylw"]
 [ext_resource type="Script" uid="uid://dlyqpe5jh0hs6" path="res://entities/player/scripts/state_walk.gd" id="7_gy3q1"]
+[ext_resource type="Script" uid="uid://cdowj2otqtidw" path="res://entities/player/scripts/player_state_machine.gd" id="7_u3c1g"]
 [ext_resource type="Script" uid="uid://764wnjlt1epk" path="res://entities/player/scripts/state_attack.gd" id="8_2suro"]
+[ext_resource type="AudioStream" uid="uid://bihc3ics5ekta" path="res://entities/player/assets/sword_swoosh.wav" id="11_u3c1g"]
 
 [sub_resource type="Animation" id="Animation_eigjl"]
 length = 0.001
@@ -429,13 +430,13 @@ _data = {
 &"walk_up": SubResource("Animation_2kdo7")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "animation_player", "entity_sprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "entity_sprite", "state_machine")]
 top_level = true
 collision_mask = 19
 script = ExtResource("1_cvnsp")
-state_machine = NodePath("StateMachine")
 animation_player = NodePath("AnimationPlayer")
 entity_sprite = NodePath("Sprite2D")
+state_machine = NodePath("StateMachine")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cvnsp")
@@ -479,7 +480,7 @@ libraries = {
 }
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("7_6oylw")
+script = ExtResource("7_u3c1g")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("6_2suro")
@@ -489,6 +490,7 @@ script = ExtResource("7_gy3q1")
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("8_2suro")
+attack_sound = ExtResource("11_u3c1g")
 
 [node name="Audio" type="Node2D" parent="."]
 

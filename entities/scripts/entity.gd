@@ -8,12 +8,23 @@ extends CharacterBody2D
 
 @export var animation_player: AnimationPlayer
 @export var entity_sprite: Sprite2D
+@export var state_machine: StateMachine
 
 var cardinal_direction := Vector2.DOWN:
 	set = set_cardinal_direction
 var direction := Vector2.ZERO:
 	set = set_direction
 var invulnerable: bool = false
+var player: Player
+
+
+func _ready():
+	state_machine.initialize(self)
+	player = PlayerManager.player
+
+
+func _process(_delta):
+	pass
 
 
 func _physics_process(_delta):
