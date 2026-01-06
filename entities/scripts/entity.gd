@@ -6,6 +6,8 @@ extends CharacterBody2D
 ## Games's "Make a 2D Action & Adventure RPG in Godot 4" tutorial series on YouTube:
 ## https://www.youtube.com/playlist?list=PLfcCiyd_V9GH8M9xd_QKlyU8jryGcy3Xa
 
+const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
+
 @export var animation_player: AnimationPlayer
 @export var entity_sprite: Sprite2D
 @export var state_machine: StateMachine
