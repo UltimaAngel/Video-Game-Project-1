@@ -11,6 +11,7 @@ var attacking: bool = false
 @onready var idle: State = $"../Idle"
 @onready var walk: State = $"../Walk"
 @onready var audio: AudioStreamPlayer2D = $"../../Audio/AudioStreamPlayer2D"
+@onready var hurt_box: HurtBox = $"../../Interactions/HurtBox"
 
 
 # Player enters State
@@ -22,13 +23,15 @@ func enter() -> void:
 	audio.pitch_scale = randf_range(0.9, 1.1)
 	audio.play()
 	attacking = true
+	await get_tree().create_timer(0.075).timeout
+	hurt_box.monitoring = true
 
 
 # Player exits State
 func exit() -> void:
 	animation_player.animation_finished.disconnect(end_attack)
 	attacking = false
-	pass
+	hurt_box.monitoring = false
 
 
 func process(_delta: float) -> State:
