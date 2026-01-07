@@ -10,6 +10,9 @@ extends CharacterBody2D
 @export var animation_player: AnimationPlayer
 @export var entity_sprite: Sprite2D
 
+# Signal used by Player to emit new directions
+signal DirectionChanged(new_direction: Vector2)
+
 var cardinal_direction := Vector2.DOWN:
 	set = set_cardinal_direction
 var direction := Vector2.ZERO:
@@ -44,6 +47,10 @@ func set_cardinal_direction(value: Vector2) -> void:
 func set_direction(value: Vector2) -> void:
 	direction = value
 
+	# Additonal moonwalk prevention
+	#var direction_id: int = int(round((direction + cardinal_direction * 0.1).angle() / TAU * DIR_4.size()))
+	#var new_dir = DIR_4[ direction_id]
+
 	# Keep same sprite direction if player stops moving
 	if value == Vector2.ZERO:
 		return
@@ -66,6 +73,8 @@ func set_direction(value: Vector2) -> void:
 	if new_dir == cardinal_direction:
 		return
 	cardinal_direction = new_dir
+
+	DirectionChanged.emit(new_dir)
 
 
 func update_animation(state: String) -> void:
