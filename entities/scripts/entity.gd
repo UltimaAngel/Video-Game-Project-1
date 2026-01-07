@@ -47,6 +47,10 @@ func set_cardinal_direction(value: Vector2) -> void:
 func set_direction(value: Vector2) -> void:
 	direction = value
 
+	# Additonal moonwalk prevention
+	#var direction_id: int = int(round((direction + cardinal_direction * 0.1).angle() / TAU * DIR_4.size()))
+	#var new_dir = DIR_4[ direction_id]
+
 	# Keep same sprite direction if player stops moving
 	if value == Vector2.ZERO:
 		return
