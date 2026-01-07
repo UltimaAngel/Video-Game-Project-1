@@ -7,7 +7,6 @@ extends State
 @export var state_anim_duration: float = 0.7
 @export var state_cycles_min: int = 1
 @export var state_cycles_max: int = 3
-@export var next_state: State
 
 var _timer: float = 0.0
 var _direction: Vector2

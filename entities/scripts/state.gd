@@ -2,6 +2,7 @@ class_name State
 extends Node
 
 @export var anim_name: String = "idle"
+@export var next_state: State
 
 # Reference to Entity the State belongs to
 var entity: Entity
@@ -9,6 +10,10 @@ var entity: Entity
 
 
 func _ready() -> void:
+	pass
+
+
+func init() -> void:
 	pass
 
 

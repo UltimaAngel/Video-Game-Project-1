@@ -22,6 +22,7 @@ func initialize(entity: Entity) -> void:
 	for c in get_children():
 		assert(c is State)
 		c.entity = entity
+		c.init()
 	change_state(get_child(0))
 	process_mode = Node.PROCESS_MODE_INHERIT
 
