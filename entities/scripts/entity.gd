@@ -6,29 +6,30 @@ extends CharacterBody2D
 ## Games's "Make a 2D Action & Adventure RPG in Godot 4" tutorial series on YouTube:
 ## https://www.youtube.com/playlist?list=PLfcCiyd_V9GH8M9xd_QKlyU8jryGcy3Xa
 
+# Signal used by Player to emit new directions
+signal DirectionChanged(new_direction: Vector2)
 signal entity_damaged()
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
 @export var animation_player: AnimationPlayer
 @export var entity_sprite: Sprite2D
-@export var hit_box: HitboxComponent
+@export var health_component: HealthComponent
+@export var hit_box: HitBox
 @export var state_machine: StateMachine
-
-# Signal used by Player to emit new directions
-signal DirectionChanged(new_direction: Vector2)
 
 var cardinal_direction := Vector2.DOWN:
 	set = set_cardinal_direction
 var direction := Vector2.ZERO:
 	set = set_direction
-var invulnerable: bool = false
+var is_invulnerable: bool = false
 var player: Player
 
 
 func _ready():
 	state_machine.initialize(self)
 	player = PlayerManager.player
+	hit_box.Damaged.connect(_on_damaged)
 
 
 func _physics_process(_delta):
@@ -87,3 +88,10 @@ func set_direction(value: Vector2) -> void:
 
 func update_animation(state: String) -> void:
 	animation_player.play(state + "_" + anim_direction())
+
+
+func _on_damaged(damage_taken: int) -> void:
+	if is_invulnerable:
+		return
+	health_component.damage(damage_taken)
+	entity_damaged.emit()

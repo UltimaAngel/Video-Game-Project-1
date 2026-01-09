@@ -9,7 +9,7 @@ func _ready():
 	health = max_health
 
 
-func damage() -> void:
-	# For now, a single attack is enough to kill
-	health = 0
-	get_parent().queue_free()
+func damage(damage_taken: int) -> void:
+	health -= damage_taken
+	if health <= 0:
+		get_parent().queue_free()
