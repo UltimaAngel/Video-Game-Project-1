@@ -17,7 +17,7 @@ var attacking: bool = false
 # Player enters State
 func enter() -> void:
 	entity.update_animation("attack")
-	attack_anim.play("attack_" + entity.anim_direction())
+	attack_anim.play("attack_" + entity.anim_direction)
 	animation_player.animation_finished.connect(end_attack)
 	audio.stream = attack_sound
 	audio.pitch_scale = randf_range(0.9, 1.1)

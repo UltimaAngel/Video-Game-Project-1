@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bo0pwsa6hw5ue"]
+[gd_scene load_steps=33 format=3 uid="uid://bo0pwsa6hw5ue"]
 
 [ext_resource type="Script" uid="uid://b6fbiyjuwntgn" path="res://entities/player/scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://ceibfuodxat68" path="res://entities/player/assets/player_sprite02.png" id="2_cvnsp"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://dlyqpe5jh0hs6" path="res://entities/player/scripts/state_walk.gd" id="7_gy3q1"]
 [ext_resource type="Script" uid="uid://cdowj2otqtidw" path="res://entities/player/scripts/player_state_machine.gd" id="7_u3c1g"]
 [ext_resource type="Script" uid="uid://764wnjlt1epk" path="res://entities/player/scripts/state_attack.gd" id="8_2suro"]
-[ext_resource type="Script" uid="uid://dhxqsebo7fy6r" path="res://entities/player/scripts/player_interactions.gd" id="10_u3c1g"]
 [ext_resource type="AudioStream" uid="uid://bihc3ics5ekta" path="res://entities/player/assets/sword_swoosh.wav" id="11_ekl84"]
 [ext_resource type="PackedScene" uid="uid://bha3le6ms846r" path="res://components/hurtboxes/hurt_box.tscn" id="11_oucfp"]
 [ext_resource type="PackedScene" uid="uid://bw04c753lmlf3" path="res://components/hitboxes/hit_box.tscn" id="11_vwfor"]
@@ -503,7 +502,7 @@ max_polyphony = 4
 shape = SubResource("CapsuleShape2D_vgqql")
 
 [node name="Interactions" type="Node2D" parent="."]
-script = ExtResource("10_u3c1g")
+unique_name_in_owner = true
 
 [node name="HurtBox" parent="Interactions" instance=ExtResource("11_oucfp")]
 position = Vector2(0, 16)
