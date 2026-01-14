@@ -7,7 +7,7 @@ var _direction := Vector2.ZERO
 
 
 func init() -> void:
-	entity.entity_destroyed.connect(_on_entity_destroyed)
+	entity.health_component.destroyed.connect(_on_destroyed)
 
 
 func enter() -> void:
@@ -24,7 +24,7 @@ func process(delta: float) -> State:
 	return null
 
 
-func _on_entity_destroyed() -> void:
+func _on_destroyed() -> void:
 	get_parent().change_state(self)
 
 

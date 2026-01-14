@@ -9,7 +9,7 @@ var _is_anim_finished: bool = false
 
 
 func init() -> void:
-	entity.entity_damaged.connect(_on_entity_damaged)
+	entity.health_component.damaged.connect(_on_damaged)
 
 
 func enter() -> void:
@@ -34,7 +34,7 @@ func exit() -> void:
 	entity.is_invulnerable = false
 
 
-func _on_entity_damaged() -> void:
+func _on_damaged() -> void:
 	get_parent().change_state(self)
 
 

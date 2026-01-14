@@ -1,4 +1,3 @@
-class_name EnemyStateIdle
 extends State
 
 @export_category("AI")

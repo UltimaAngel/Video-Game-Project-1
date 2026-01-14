@@ -6,58 +6,64 @@ extends CharacterBody2D
 ## Games's "Make a 2D Action & Adventure RPG in Godot 4" tutorial series on YouTube:
 ## https://www.youtube.com/playlist?list=PLfcCiyd_V9GH8M9xd_QKlyU8jryGcy3Xa
 
-# Signal used by Player to emit new directions
-signal DirectionChanged(new_direction: Vector2)
-signal entity_damaged()
-signal entity_destroyed()
-
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
 @export var animation_player: AnimationPlayer
 @export var entity_sprite: Sprite2D
 @export var health_component: HealthComponent
 @export var hit_box: HitBox
+@export var hurt_box: HurtBox
+@export var is_invulnerable: bool = false
 @export var state_machine: StateMachine
 
 var cardinal_direction := Vector2.DOWN:
 	set = set_cardinal_direction
 var direction := Vector2.ZERO:
 	set = set_direction
-var is_invulnerable: bool = false
+var _anim_direction: String = "down"
 
 
 func _ready():
 	state_machine.initialize(self)
-	hit_box.Damaged.connect(_on_damaged)
+	if hit_box:
+		hit_box.Damaged.connect(_on_damaged)
 
 
 func _physics_process(_delta):
 	move_and_slide()
 
 
-func anim_direction() -> String:
-	match cardinal_direction:
-		Vector2.UP:
-			return "up"
-		Vector2.DOWN:
-			return "down"
-		_:
-			return "side"
-
-
 func set_cardinal_direction(value: Vector2) -> void:
+	cardinal_direction = value
+
 	# Scale the player sprite across x axis. This particular method allows us to
 	# also "flip" children of Sprite2D node.
-	cardinal_direction = value
 	entity_sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
+	match value:
+		Vector2.DOWN:
+			_anim_direction = "down"
+			if hurt_box:
+				hurt_box.rotation_degrees = 0
+		Vector2.UP:
+			_anim_direction = "up"
+			if hurt_box:
+				hurt_box.rotation_degrees = 180
+		Vector2.LEFT:
+			_anim_direction = "side"
+			if hurt_box:
+				hurt_box.rotation_degrees = 90
+		Vector2.RIGHT:
+			_anim_direction = "side"
+			if hurt_box:
+				hurt_box.rotation_degrees = -90
+		_:
+			_anim_direction = "down"
+			if hurt_box:
+				hurt_box.rotation_degrees = 0
 
 
 func set_direction(value: Vector2) -> void:
 	direction = value
-
-	# Additonal moonwalk prevention
-	#var direction_id: int = int(round((direction + cardinal_direction * 0.1).angle() / TAU * DIR_4.size()))
-	#var new_dir = DIR_4[ direction_id]
 
 	# Keep same sprite direction if player stops moving
 	if value == Vector2.ZERO:
@@ -82,18 +88,13 @@ func set_direction(value: Vector2) -> void:
 		return
 	cardinal_direction = new_dir
 
-	DirectionChanged.emit(new_dir)
-
 
 func update_animation(state: String) -> void:
-	animation_player.play(state + "_" + anim_direction())
+	animation_player.play(state + "_" + _anim_direction)
 
 
 func _on_damaged(damage_taken: int) -> void:
 	if is_invulnerable == true:
 		return
-	health_component.damage(damage_taken)
-	if health_component.health > 0:
-		entity_damaged.emit()
-	else:
-		entity_destroyed.emit()
+	if health_component:
+		health_component.damage(damage_taken)

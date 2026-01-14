@@ -1,4 +1,3 @@
-class_name EnemyStateWander
 extends State
 
 @export var wander_speed: float = 30.0
