@@ -9,6 +9,7 @@ extends CharacterBody2D
 # Signal used by Player to emit new directions
 signal DirectionChanged(new_direction: Vector2)
 signal entity_damaged()
+signal entity_destroyed()
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
@@ -23,12 +24,10 @@ var cardinal_direction := Vector2.DOWN:
 var direction := Vector2.ZERO:
 	set = set_direction
 var is_invulnerable: bool = false
-var player: Player
 
 
 func _ready():
 	state_machine.initialize(self)
-	player = PlayerManager.player
 	hit_box.Damaged.connect(_on_damaged)
 
 
@@ -91,7 +90,10 @@ func update_animation(state: String) -> void:
 
 
 func _on_damaged(damage_taken: int) -> void:
-	if is_invulnerable:
+	if is_invulnerable == true:
 		return
 	health_component.damage(damage_taken)
-	entity_damaged.emit()
+	if health_component.health > 0:
+		entity_damaged.emit()
+	else:
+		entity_destroyed.emit()

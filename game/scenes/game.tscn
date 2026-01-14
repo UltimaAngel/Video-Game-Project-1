@@ -17,9 +17,6 @@ zoom = Vector2(2, 2)
 
 [node name="Map-01" parent="." instance=ExtResource("3_vv3et")]
 
-[node name="Slime" parent="." instance=ExtResource("3_ykdcs")]
-position = Vector2(1048, 330)
-
 [node name="Plant" parent="." instance=ExtResource("3_wowgv")]
 position = Vector2(336, 254)
 
@@ -34,3 +31,20 @@ position = Vector2(426, 349)
 
 [node name="Plant5" parent="." instance=ExtResource("3_wowgv")]
 position = Vector2(338, 351)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Slime" parent="Enemies" instance=ExtResource("3_ykdcs")]
+position = Vector2(1048, 330)
+
+[node name="Slime2" parent="Enemies" instance=ExtResource("3_ykdcs")]
+position = Vector2(840, 520)
+
+[node name="Slime3" parent="Enemies" instance=ExtResource("3_ykdcs")]
+position = Vector2(256, 544)
+
+[node name="Slime4" parent="Enemies" instance=ExtResource("3_ykdcs")]
+position = Vector2(720, 328)
+
+[node name="Slime5" parent="Enemies" instance=ExtResource("3_ykdcs")]
+position = Vector2(72, 88)

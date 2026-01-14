@@ -11,9 +11,9 @@
 [ext_resource type="Script" uid="uid://7escn5gwtvlr" path="res://entities/enemies/slime/scripts/enemy_state_idle.gd" id="7_nly76"]
 [ext_resource type="AudioStream" uid="uid://bpvi6as2mx5ab" path="res://entities/assets/hit_00.wav" id="7_pacdt"]
 [ext_resource type="Script" uid="uid://d0o2hxffynp7v" path="res://entities/enemies/slime/scripts/enemy_state_wander.gd" id="8_8hb4w"]
-[ext_resource type="Script" uid="uid://cntrewqqfc0nh" path="res://entities/scripts/state.gd" id="10_pacdt"]
 [ext_resource type="Texture2D" uid="uid://do15avt6sqajw" path="res://entities/assets/DestroySmoke.png" id="11_h77dj"]
 [ext_resource type="Script" uid="uid://bm84er77iesp0" path="res://entities/enemies/slime/scripts/enemy_state_stun.gd" id="11_jy1ul"]
+[ext_resource type="Script" uid="uid://8pe5nuwxntk1" path="res://entities/enemies/slime/scripts/enemy_state_destroy.gd" id="13_jy1ul"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umckf"]
 radius = 5.0
@@ -783,7 +783,8 @@ anim_name = "stun"
 next_state = NodePath("../Idle")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("10_pacdt")
+script = ExtResource("13_jy1ul")
+anim_name = "destroy"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 max_polyphony = 4
