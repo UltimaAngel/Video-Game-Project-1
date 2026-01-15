@@ -6,31 +6,25 @@ extends Entity
 
 func set_cardinal_direction(value: Vector2) -> void:
 	cardinal_direction = value
-
 	# Scale the player sprite across x axis. This particular method allows us to
 	# also "flip" children of Sprite2D node.
 	entity_sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
 	match value:
 		Vector2.DOWN:
 			anim_direction = "down"
-			if interactions:
-				interactions.rotation_degrees = 0
+			interactions.rotation_degrees = 0
 		Vector2.UP:
 			anim_direction = "up"
-			if interactions:
-				interactions.rotation_degrees = 180
+			interactions.rotation_degrees = 180
 		Vector2.LEFT:
 			anim_direction = "side"
-			if interactions:
-				interactions.rotation_degrees = 90
+			interactions.rotation_degrees = 90
 		Vector2.RIGHT:
 			anim_direction = "side"
-			if interactions:
-				interactions.rotation_degrees = -90
+			interactions.rotation_degrees = -90
 		_:
 			anim_direction = "down"
-			if interactions:
-				interactions.rotation_degrees = 0
+			interactions.rotation_degrees = 0
 
 
 func _process(_delta):
