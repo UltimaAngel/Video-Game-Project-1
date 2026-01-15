@@ -23,6 +23,7 @@ func initialize(entity: Entity) -> void:
 		assert(c is State)
 		c.entity = entity
 		c.init()
+	# Default state will be the first child of StateMachine
 	change_state(get_child(0))
 	process_mode = Node.PROCESS_MODE_INHERIT
 

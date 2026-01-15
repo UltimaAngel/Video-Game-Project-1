@@ -42,4 +42,12 @@ func _process(_delta):
 
 func _ready():
 	PlayerManager.player = self
-	state_machine.initialize(self)
+	#if health_component:
+	#health_component.destroyed.connect(_on_destroyed)
+	if hit_box:
+		hit_box.Damaged.connect(_on_damaged)
+	if state_machine:
+		state_machine.initialize(self)
+
+	#func _on_destroyed():
+	#queue_free()

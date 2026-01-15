@@ -23,7 +23,8 @@ var anim_direction: String = "down"
 
 
 func _ready():
-	state_machine.initialize(self)
+	if state_machine:
+		state_machine.initialize(self)
 	if hit_box:
 		hit_box.Damaged.connect(_on_damaged)
 
