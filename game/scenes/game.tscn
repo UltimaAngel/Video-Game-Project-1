@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://4pqund3nukl7"]
 
-[ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://characters/player/scenes/player.tscn" id="1_7aouk"]
-[ext_resource type="Script" uid="uid://b6fbiyjuwntgn" path="res://entities/player/scripts/player.gd" id="2_wowgv"]
+[ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://entities/player/scenes/player.tscn" id="1_7aouk"]
 [ext_resource type="PackedScene" uid="uid://clc62kh1t0g6n" path="res://dungeon/map_01.tscn" id="3_vv3et"]
 [ext_resource type="PackedScene" uid="uid://dbqqs3tagpnsr" path="res://props/Objects/plant.tscn" id="3_wowgv"]
+[ext_resource type="PackedScene" uid="uid://canu8q4nsyg2a" path="res://entities/enemies/slime/scenes/slime.tscn" id="3_ykdcs"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
@@ -11,7 +11,6 @@ y_sort_enabled = true
 [node name="Player" parent="." instance=ExtResource("1_7aouk")]
 top_level = false
 position = Vector2(582, 314)
-script = ExtResource("2_wowgv")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(2, 2)
@@ -32,3 +31,20 @@ position = Vector2(426, 349)
 
 [node name="Plant5" parent="." instance=ExtResource("3_wowgv")]
 position = Vector2(338, 351)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Slime" parent="Enemies" instance=ExtResource("3_ykdcs")]
+position = Vector2(1048, 330)
+
+[node name="Slime2" parent="Enemies" instance=ExtResource("3_ykdcs")]
+position = Vector2(840, 520)
+
+[node name="Slime3" parent="Enemies" instance=ExtResource("3_ykdcs")]
+position = Vector2(256, 544)
+
+[node name="Slime4" parent="Enemies" instance=ExtResource("3_ykdcs")]
+position = Vector2(720, 328)
+
+[node name="Slime5" parent="Enemies" instance=ExtResource("3_ykdcs")]
+position = Vector2(72, 88)
