@@ -1,4 +1,5 @@
 [gd_scene load_steps=33 format=3 uid="uid://bo0pwsa6hw5ue"]
+
 [ext_resource type="Script" uid="uid://b6fbiyjuwntgn" path="res://entities/player/scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://ceibfuodxat68" path="res://entities/player/assets/player_sprite02.png" id="2_cvnsp"]
 [ext_resource type="PackedScene" uid="uid://bdu6v3fhcn53g" path="res://components/health_component/health_component.tscn" id="3_41mm0"]
@@ -426,9 +427,7 @@ _data = {
 &"walk_up": SubResource("Animation_2kdo7")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgqql"]
-radius = 13.0
-height = 44.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_oucfp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ekl84"]
 radius = 20.0
@@ -499,7 +498,9 @@ max_polyphony = 4
 collision_layer = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("CapsuleShape2D_vgqql")
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_oucfp")
+debug_color = Color(0.56197894, 0.5571533, 0.14572686, 0.41960785)
 
 [node name="Interactions" type="Node2D" parent="."]
 unique_name_in_owner = true
