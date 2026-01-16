@@ -10,32 +10,32 @@ var _prev_dir := Vector2.ZERO
 
 
 # Player enters State
-func Enter() -> void:
-	player.update_animation("walk")
+func enter() -> void:
+	entity.update_animation("walk")
 
 
 # Player exits State
-func Exit() -> void:
+func exit() -> void:
 	pass
 
 
-func Process(_delta: float) -> State:
-	if player.direction == Vector2.ZERO:
+func process(_delta: float) -> State:
+	if entity.direction == Vector2.ZERO:
 		return idle
 
-	player.velocity = player.direction * move_speed
+	entity.velocity = entity.direction * move_speed
 
-	if player.direction != _prev_dir:
-		player.update_animation("walk")
-	_prev_dir = player.direction
+	if entity.direction != _prev_dir:
+		entity.update_animation("walk")
+	_prev_dir = entity.direction
 	return null
 
 
-func Physics(_delta: float) -> State:
+func physics(_delta: float) -> State:
 	return null
 
 
-func HandleInput(_event: InputEvent) -> State:
+func handle_input(_event: InputEvent) -> State:
 	if _event.is_action_pressed("click"):
 		return attack
 	return null

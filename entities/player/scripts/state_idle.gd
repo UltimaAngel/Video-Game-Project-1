@@ -6,28 +6,28 @@ extends State
 
 
 # Player enters State
-func Enter() -> void:
-	player.update_animation("idle")
+func enter() -> void:
+	entity.update_animation("idle")
 
 
 # Player exits State
-func Exit() -> void:
+func exit() -> void:
 	pass
 
 
-func Process(_delta: float) -> State:
-	if player.direction != Vector2.ZERO:
+func process(_delta: float) -> State:
+	if entity.direction != Vector2.ZERO:
 		return walk
 
-	player.velocity = Vector2.ZERO
+	entity.velocity = Vector2.ZERO
 	return null
 
 
-func Physics(_delta: float) -> State:
+func physics(_delta: float) -> State:
 	return null
 
 
-func HandleInput(_event: InputEvent) -> State:
+func handle_input(_event: InputEvent) -> State:
 	if _event.is_action_pressed("click"):
 		return attack
 	return null
