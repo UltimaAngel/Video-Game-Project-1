@@ -1,14 +1,19 @@
 class_name Entity
 extends CharacterBody2D
-## Player code including movement and states.
+## The class that the Player, Enemies, and NPCs will derive from.
 ##
-## A portion of the code in this script (regarding playing idle/walking animations)
-## is directly inspired by or taken from Michael Games's "Make a 2D Action & Adventure
-## RPG in Godot 4" tutorial series on YouTube:
+## A portion of the code in this script is directly inspired by or taken from Michael
+## Games's "Make a 2D Action & Adventure RPG in Godot 4" tutorial series on YouTube:
 ## https://www.youtube.com/playlist?list=PLfcCiyd_V9GH8M9xd_QKlyU8jryGcy3Xa
+
+const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
 @export var animation_player: AnimationPlayer
 @export var entity_sprite: Sprite2D
+@export var health_component: HealthComponent
+@export var hit_box: HitBox
+@export var is_invulnerable: bool = false
+@export var state_machine: StateMachine
 
 # Signal used by Player to emit new directions
 signal DirectionChanged(new_direction: Vector2)
@@ -17,31 +22,33 @@ var cardinal_direction := Vector2.DOWN:
 	set = set_cardinal_direction
 var direction := Vector2.ZERO:
 	set = set_direction
+var anim_direction: String = "down"
+
+
+func _ready():
+	if state_machine:
+		state_machine.initialize(self)
+	if hit_box:
+		hit_box.Damaged.connect(_on_damaged)
 
 
 func _physics_process(_delta):
 	move_and_slide()
 
 
-func anim_direction() -> String:
-	match cardinal_direction:
-		Vector2.LEFT:
-			return "side"
-		Vector2.RIGHT:
-			return "side"
-		Vector2.UP:
-			return "up"
-		Vector2.DOWN:
-			return "down"
-		_:
-			return "down"
-
-
 func set_cardinal_direction(value: Vector2) -> void:
+	cardinal_direction = value
+
 	# Scale the player sprite across x axis. This particular method allows us to
 	# also "flip" children of Sprite2D node.
-	cardinal_direction = value
 	entity_sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
+	match value:
+		Vector2.DOWN:
+			anim_direction = "down"
+		Vector2.UP:
+			anim_direction = "up"
+		_:
+			anim_direction = "side"
 
 
 func set_direction(value: Vector2) -> void:
@@ -78,4 +85,11 @@ func set_direction(value: Vector2) -> void:
 
 
 func update_animation(state: String) -> void:
-	animation_player.play(state + "_" + anim_direction())
+	animation_player.play(state + "_" + anim_direction)
+
+
+func _on_damaged(damage_taken: int) -> void:
+	if is_invulnerable == true:
+		return
+	if health_component:
+		health_component.damage(damage_taken)

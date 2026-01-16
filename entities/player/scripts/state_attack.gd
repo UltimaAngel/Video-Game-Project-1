@@ -15,10 +15,10 @@ var attacking: bool = false
 
 
 # Player enters State
-func Enter() -> void:
-	player.update_animation("attack")
-	attack_anim.play("attack_" + player.anim_direction())
-	animation_player.animation_finished.connect(EndAttack)
+func enter() -> void:
+	entity.update_animation("attack")
+	attack_anim.play("attack_" + entity.anim_direction)
+	animation_player.animation_finished.connect(end_attack)
 	audio.stream = attack_sound
 	audio.pitch_scale = randf_range(0.9, 1.1)
 	audio.play()
@@ -28,30 +28,30 @@ func Enter() -> void:
 
 
 # Player exits State
-func Exit() -> void:
-	animation_player.animation_finished.disconnect(EndAttack)
+func exit() -> void:
+	animation_player.animation_finished.disconnect(end_attack)
 	attacking = false
 	hurt_box.monitoring = false
 
 
-func Process(_delta: float) -> State:
-	player.velocity -= player.velocity * decel_speed * _delta
+func process(_delta: float) -> State:
+	entity.velocity -= entity.velocity * decel_speed * _delta
 
 	if attacking == false:
-		if player.direction == Vector2.ZERO:
+		if entity.direction == Vector2.ZERO:
 			return idle
 		else:
 			return walk
 	return null
 
 
-func Physics(_delta: float) -> State:
+func physics(_delta: float) -> State:
 	return null
 
 
-func HandleInput(_event: InputEvent) -> State:
+func handle_input(_event: InputEvent) -> State:
 	return null
 
 
-func EndAttack(_newAnimName: String) -> void:
+func end_attack(_newAnimName: String) -> void:
 	attacking = false
