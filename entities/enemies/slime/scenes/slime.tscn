@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://canu8q4nsyg2a"]
+[gd_scene load_steps=34 format=3 uid="uid://canu8q4nsyg2a"]
 
 [ext_resource type="Texture2D" uid="uid://mklv7yqx13jf" path="res://entities/enemies/slime/assets/slime.png" id="1_2mbw8"]
 [ext_resource type="Script" uid="uid://b6gjws1li2gd1" path="res://entities/scripts/entity.gd" id="1_6xq2y"]
@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://do15avt6sqajw" path="res://entities/assets/DestroySmoke.png" id="11_h77dj"]
 [ext_resource type="Script" uid="uid://bm84er77iesp0" path="res://entities/enemies/slime/scripts/enemy_state_stun.gd" id="11_jy1ul"]
 [ext_resource type="Script" uid="uid://8pe5nuwxntk1" path="res://entities/enemies/slime/scripts/enemy_state_destroy.gd" id="13_jy1ul"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jy1ul"]
+radius = 13.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_umckf"]
 radius = 5.0
@@ -729,10 +732,11 @@ hit_box = NodePath("HitBox")
 state_machine = NodePath("EnemyStateMachine")
 
 [node name="HitBox" parent="." instance=ExtResource("3_v17ds")]
+position = Vector2(0, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_umckf")
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_jy1ul")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -19)
@@ -747,16 +751,19 @@ position = Vector2(0, 19)
 texture = ExtResource("1_ncw7u")
 
 [node name="HurtBox" parent="." instance=ExtResource("2_jy1ul")]
+position = Vector2(0, -5)
 collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_umckf")
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_jy1ul")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_co1cg")]
-max_health = 5.0
+position = Vector2(0, -5)
+_max_health = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_umckf")
 
@@ -788,6 +795,7 @@ script = ExtResource("13_jy1ul")
 anim_name = "destroy"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -5)
 max_polyphony = 4
 
 [node name="DestroyEffectSprite" type="Sprite2D" parent="."]
