@@ -445,6 +445,7 @@ hit_box = NodePath("HitBox")
 state_machine = NodePath("StateMachine")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -18)
 texture = ExtResource("2_cvnsp")
 hframes = 16
 vframes = 3
@@ -467,10 +468,11 @@ libraries = {
 autoplay = "no_attack"
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_41mm0")]
+position = Vector2(0, -18)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 show_behind_parent = true
-position = Vector2(0, 20)
+position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_ittr2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -492,11 +494,13 @@ script = ExtResource("8_2suro")
 attack_sound = ExtResource("11_ekl84")
 
 [node name="Audio" type="Node2D" parent="."]
+position = Vector2(0, -18)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio"]
 max_polyphony = 4
 
 [node name="HitBox" parent="." instance=ExtResource("11_vwfor")]
+position = Vector2(0, -18)
 collision_layer = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
@@ -504,6 +508,7 @@ shape = SubResource("CapsuleShape2D_vgqql")
 
 [node name="Interactions" type="Node2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -18)
 
 [node name="HurtBox" parent="Interactions" instance=ExtResource("11_oucfp")]
 position = Vector2(0, 16)
