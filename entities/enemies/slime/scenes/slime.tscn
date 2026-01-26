@@ -46,7 +46,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -19)]
+"values": [Vector2(0, -24)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -86,7 +86,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.25, 0.3),
 "transitions": PackedFloat32Array(-2, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -19), Vector2(0, -22), Vector2(0, -19), Vector2(0, -19)]
+"values": [Vector2(0, -24), Vector2(0, -27), Vector2(0, -24), Vector2(0, -24)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -166,7 +166,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.25, 0.3),
 "transitions": PackedFloat32Array(-2, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -19), Vector2(0, -22), Vector2(0, -19), Vector2(0, -19)]
+"values": [Vector2(0, -24), Vector2(0, -27), Vector2(0, -24), Vector2(0, -24)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -246,7 +246,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.25, 0.3),
 "transitions": PackedFloat32Array(-2, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -19), Vector2(0, -22), Vector2(0, -19), Vector2(0, -19)]
+"values": [Vector2(0, -24), Vector2(0, -27), Vector2(0, -24), Vector2(0, -24)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -327,7 +327,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -19)]
+"values": [Vector2(0, -24)]
 }
 
 [sub_resource type="Animation" id="Animation_34c77"]
@@ -356,7 +356,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -19)]
+"values": [Vector2(0, -24)]
 }
 
 [sub_resource type="Animation" id="Animation_fbeu0"]
@@ -385,7 +385,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -19)]
+"values": [Vector2(0, -24)]
 }
 
 [sub_resource type="Animation" id="Animation_25h3e"]
@@ -414,7 +414,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.25, 0.3),
 "transitions": PackedFloat32Array(-2, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -19), Vector2(0, -22), Vector2(0, -19), Vector2(0, -19)]
+"values": [Vector2(0, -24), Vector2(0, -27), Vector2(0, -24), Vector2(0, -24)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -470,7 +470,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.25, 0.3),
 "transitions": PackedFloat32Array(-2, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -19), Vector2(0, -22), Vector2(0, -19), Vector2(0, -19)]
+"values": [Vector2(0, -24), Vector2(0, -27), Vector2(0, -24), Vector2(0, -24)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -526,7 +526,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.25, 0.3),
 "transitions": PackedFloat32Array(-2, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -19), Vector2(0, -22), Vector2(0, -19), Vector2(0, -19)]
+"values": [Vector2(0, -24), Vector2(0, -27), Vector2(0, -24), Vector2(0, -24)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -582,7 +582,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
 "transitions": PackedFloat32Array(-2, -2, -2, -2),
 "update": 0,
-"values": [Vector2(0, -19), Vector2(0, -19), Vector2(0, -23), Vector2(0, -19)]
+"values": [Vector2(0, -24), Vector2(0, -24), Vector2(0, -28), Vector2(0, -24)]
 }
 
 [sub_resource type="Animation" id="Animation_nly76"]
@@ -611,7 +611,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
 "transitions": PackedFloat32Array(-2, -2, -2, -2),
 "update": 0,
-"values": [Vector2(0, -19), Vector2(0, -19), Vector2(0, -23), Vector2(0, -19)]
+"values": [Vector2(0, -24), Vector2(0, -24), Vector2(0, -28), Vector2(0, -24)]
 }
 
 [sub_resource type="Animation" id="Animation_8hb4w"]
@@ -640,7 +640,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.5, 0.7),
 "transitions": PackedFloat32Array(-2, -2, -2, -2),
 "update": 0,
-"values": [Vector2(0, -19), Vector2(0, -19), Vector2(0, -23), Vector2(0, -19)]
+"values": [Vector2(0, -24), Vector2(0, -24), Vector2(0, -28), Vector2(0, -24)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6xq2y"]
@@ -739,7 +739,7 @@ position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_jy1ul")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -19)
+position = Vector2(0, -24)
 texture = ExtResource("1_2mbw8")
 hframes = 16
 vframes = 2
