@@ -19,10 +19,16 @@ func _physics_process(delta: float) -> void:
 
 
 func initialize(entity: Entity) -> void:
+	if get_child_count() == 0:
+		return
+
+	# Set each state's entity to the provided one, set the machine, and init
 	for c in get_children():
 		assert(c is State)
 		c.entity = entity
+		c.state_machine = self
 		c.init()
+
 	# Default state will be the first child of StateMachine
 	change_state(get_child(0))
 	process_mode = Node.PROCESS_MODE_INHERIT

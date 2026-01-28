@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bo0pwsa6hw5ue"]
+[gd_scene format=3 uid="uid://bo0pwsa6hw5ue"]
 
 [ext_resource type="Script" uid="uid://b6fbiyjuwntgn" path="res://entities/player/scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://ceibfuodxat68" path="res://entities/player/assets/player_sprite02.png" id="2_cvnsp"]
@@ -10,8 +10,10 @@
 [ext_resource type="Script" uid="uid://cdowj2otqtidw" path="res://entities/player/scripts/player_state_machine.gd" id="7_u3c1g"]
 [ext_resource type="Script" uid="uid://764wnjlt1epk" path="res://entities/player/scripts/state_attack.gd" id="8_2suro"]
 [ext_resource type="AudioStream" uid="uid://bihc3ics5ekta" path="res://entities/player/assets/sword_swoosh.wav" id="11_ekl84"]
+[ext_resource type="Script" uid="uid://cqp7jsw83yljy" path="res://entities/player/scripts/state_stun.gd" id="11_exelp"]
 [ext_resource type="PackedScene" uid="uid://bha3le6ms846r" path="res://components/hurtboxes/hurt_box.tscn" id="11_oucfp"]
 [ext_resource type="PackedScene" uid="uid://bw04c753lmlf3" path="res://components/hitboxes/hit_box.tscn" id="11_vwfor"]
+[ext_resource type="AudioStream" uid="uid://beachdr1o4jr" path="res://entities/player/assets/hit_player.wav" id="13_ekl84"]
 
 [sub_resource type="Animation" id="Animation_eigjl"]
 length = 0.001
@@ -432,7 +434,75 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_ekl84"]
 radius = 20.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "entity_sprite", "health_component", "hit_box", "state_machine")]
+[sub_resource type="Animation" id="Animation_exelp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_33iwi"]
+resource_name = "damaged"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_ekl84")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_vwfor"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pt0jy"]
+_data = {
+&"RESET": SubResource("Animation_exelp"),
+&"damaged": SubResource("Animation_33iwi"),
+&"default": SubResource("Animation_vwfor")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=740599777 node_paths=PackedStringArray("animation_player", "entity_sprite", "health_component", "hit_box", "state_machine")]
 top_level = true
 collision_mask = 19
 script = ExtResource("1_cvnsp")
@@ -442,74 +512,79 @@ health_component = NodePath("HealthComponent")
 hit_box = NodePath("HitBox")
 state_machine = NodePath("StateMachine")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=398964999]
 texture = ExtResource("2_cvnsp")
 hframes = 16
 vframes = 3
 
-[node name="ShadowSprite" type="Sprite2D" parent="Sprite2D"]
+[node name="ShadowSprite" type="Sprite2D" parent="Sprite2D" unique_id=1040107618]
 modulate = Color(0, 0, 0, 0.49019608)
 show_behind_parent = true
 position = Vector2(0, 20)
 texture = ExtResource("3_ekl84")
 
-[node name="AttackEffectSprite" type="Sprite2D" parent="Sprite2D"]
+[node name="AttackEffectSprite" type="Sprite2D" parent="Sprite2D" unique_id=2065322775]
 position = Vector2(0, 10)
 texture = ExtResource("4_ekl84")
 hframes = 12
 
-[node name="AttackEffectAnimation" type="AnimationPlayer" parent="Sprite2D/AttackEffectSprite"]
-libraries = {
-&"": SubResource("AnimationLibrary_ronts")
-}
-autoplay = "no_attack"
+[node name="AttackEffectAnimation" type="AnimationPlayer" parent="Sprite2D/AttackEffectSprite" unique_id=986263849]
+libraries/ = SubResource("AnimationLibrary_ronts")
+autoplay = &"no_attack"
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_41mm0")]
+[node name="HealthComponent" parent="." unique_id=709405965 instance=ExtResource("3_41mm0")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=219288472]
 show_behind_parent = true
 position = Vector2(0, 20)
 shape = SubResource("CircleShape2D_ittr2")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_p04ig")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=474431594]
+libraries/ = SubResource("AnimationLibrary_p04ig")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." unique_id=289942531]
 script = ExtResource("7_u3c1g")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=776452295]
 script = ExtResource("6_2suro")
 
-[node name="Walk" type="Node" parent="StateMachine"]
+[node name="Walk" type="Node" parent="StateMachine" unique_id=1939898642]
 script = ExtResource("7_gy3q1")
 
-[node name="Attack" type="Node" parent="StateMachine"]
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1507881732]
 script = ExtResource("8_2suro")
 attack_sound = ExtResource("11_ekl84")
 
-[node name="Audio" type="Node2D" parent="."]
+[node name="Stun" type="Node" parent="StateMachine" unique_id=722523651]
+script = ExtResource("11_exelp")
+move_speed = null
+invulnerable_duration = null
+anim_name = null
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio"]
+[node name="Audio" type="Node2D" parent="." unique_id=772774221]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio" unique_id=15095843]
 max_polyphony = 4
 
-[node name="HitBox" parent="." instance=ExtResource("11_vwfor")]
-collision_layer = 1
+[node name="HitBox" parent="." unique_id=1887156674 instance=ExtResource("11_vwfor")]
+collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=937708310]
 position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_oucfp")
 debug_color = Color(0.56197894, 0.5571533, 0.14572686, 0.41960785)
 
-[node name="Interactions" type="Node2D" parent="."]
+[node name="Interactions" type="Node2D" parent="." unique_id=121030463]
 unique_name_in_owner = true
 
-[node name="HurtBox" parent="Interactions" instance=ExtResource("11_oucfp")]
+[node name="HurtBox" parent="Interactions" unique_id=748073272 instance=ExtResource("11_oucfp")]
 position = Vector2(0, 16)
 collision_mask = 256
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox" unique_id=65582600]
 shape = SubResource("CircleShape2D_ekl84")
 debug_color = Color(0.9536719, 0.20807242, 0.16435587, 0.41960785)
+
+[node name="EffectAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1411569256]
+libraries/ = SubResource("AnimationLibrary_pt0jy")

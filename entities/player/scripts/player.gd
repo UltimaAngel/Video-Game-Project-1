@@ -2,6 +2,8 @@ class_name Player
 extends Entity
 
 @onready var interactions: Node = get_node("Interactions")
+@onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
+# May not need effect animation player here, but it may be specific to Player
 
 
 func set_cardinal_direction(value: Vector2) -> void:
