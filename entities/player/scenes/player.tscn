@@ -557,9 +557,6 @@ attack_sound = ExtResource("11_ekl84")
 
 [node name="Stun" type="Node" parent="StateMachine" unique_id=722523651]
 script = ExtResource("11_exelp")
-move_speed = null
-invulnerable_duration = null
-anim_name = null
 
 [node name="Audio" type="Node2D" parent="." unique_id=772774221]
 

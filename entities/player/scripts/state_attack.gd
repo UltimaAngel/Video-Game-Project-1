@@ -19,12 +19,15 @@ func enter() -> void:
 	entity.update_animation("attack")
 	attack_anim.play("attack_" + entity.anim_direction)
 	animation_player.animation_finished.connect(end_attack)
+
 	audio.stream = attack_sound
 	audio.pitch_scale = randf_range(0.9, 1.1)
 	audio.play()
+
 	attacking = true
 	await get_tree().create_timer(0.075).timeout
 	hurt_box.monitoring = true
+	print("Enter end")
 
 
 # Player exits State
@@ -32,6 +35,10 @@ func exit() -> void:
 	animation_player.animation_finished.disconnect(end_attack)
 	attacking = false
 	hurt_box.monitoring = false
+	await get_tree().create_timer(0.075).timeout
+	if hurt_box.monitoring == true:
+		hurt_box.monitoring = false
+	print("Exit end")
 
 
 func process(_delta: float) -> State:
