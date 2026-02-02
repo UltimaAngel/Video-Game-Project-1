@@ -10,10 +10,12 @@
 [ext_resource type="Script" uid="uid://cdowj2otqtidw" path="res://entities/player/scripts/player_state_machine.gd" id="7_u3c1g"]
 [ext_resource type="Script" uid="uid://764wnjlt1epk" path="res://entities/player/scripts/state_attack.gd" id="8_2suro"]
 [ext_resource type="AudioStream" uid="uid://bihc3ics5ekta" path="res://entities/player/assets/sword_swoosh.wav" id="11_ekl84"]
-[ext_resource type="Script" uid="uid://cqp7jsw83yljy" path="res://entities/player/scripts/state_stun.gd" id="11_exelp"]
 [ext_resource type="PackedScene" uid="uid://bha3le6ms846r" path="res://components/hurtboxes/hurt_box.tscn" id="11_oucfp"]
 [ext_resource type="PackedScene" uid="uid://bw04c753lmlf3" path="res://components/hitboxes/hit_box.tscn" id="11_vwfor"]
 [ext_resource type="AudioStream" uid="uid://beachdr1o4jr" path="res://entities/player/assets/hit_player.wav" id="13_ekl84"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ittr2"]
+radius = 8.062258
 
 [sub_resource type="Animation" id="Animation_eigjl"]
 length = 0.001
@@ -246,9 +248,6 @@ _data = {
 &"attack_up": SubResource("Animation_2fx0v"),
 &"no_attack": SubResource("Animation_ronts")
 }
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ittr2"]
-radius = 8.062258
 
 [sub_resource type="Animation" id="Animation_41mm0"]
 length = 0.001
@@ -502,7 +501,7 @@ _data = {
 &"default": SubResource("Animation_vwfor")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=740599777 node_paths=PackedStringArray("animation_player", "entity_sprite", "health_component", "hit_box", "state_machine")]
+[node name="Player" type="CharacterBody2D" unique_id=1951096566 node_paths=PackedStringArray("animation_player", "entity_sprite", "health_component", "hit_box", "state_machine")]
 top_level = true
 collision_mask = 19
 script = ExtResource("1_cvnsp")
@@ -512,74 +511,80 @@ health_component = NodePath("HealthComponent")
 hit_box = NodePath("HitBox")
 state_machine = NodePath("StateMachine")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=398964999]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1284913257]
+show_behind_parent = true
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_ittr2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=939325248]
+position = Vector2(0, -23)
 texture = ExtResource("2_cvnsp")
 hframes = 16
 vframes = 3
 
-[node name="ShadowSprite" type="Sprite2D" parent="Sprite2D" unique_id=1040107618]
+[node name="ShadowSprite" type="Sprite2D" parent="Sprite2D" unique_id=992877495]
 modulate = Color(0, 0, 0, 0.49019608)
 show_behind_parent = true
 position = Vector2(0, 20)
 texture = ExtResource("3_ekl84")
 
-[node name="AttackEffectSprite" type="Sprite2D" parent="Sprite2D" unique_id=2065322775]
+[node name="AttackEffectSprite" type="Sprite2D" parent="Sprite2D" unique_id=673616794]
 position = Vector2(0, 10)
 texture = ExtResource("4_ekl84")
 hframes = 12
 
-[node name="AttackEffectAnimation" type="AnimationPlayer" parent="Sprite2D/AttackEffectSprite" unique_id=986263849]
+[node name="AttackEffectAnimation" type="AnimationPlayer" parent="Sprite2D/AttackEffectSprite" unique_id=370046946]
 libraries/ = SubResource("AnimationLibrary_ronts")
 autoplay = &"no_attack"
 
-[node name="HealthComponent" parent="." unique_id=709405965 instance=ExtResource("3_41mm0")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=219288472]
-show_behind_parent = true
-position = Vector2(0, 20)
-shape = SubResource("CircleShape2D_ittr2")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=474431594]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1772431849]
 libraries/ = SubResource("AnimationLibrary_p04ig")
 
-[node name="StateMachine" type="Node" parent="." unique_id=289942531]
-script = ExtResource("7_u3c1g")
+[node name="HealthComponent" parent="." unique_id=702080129 instance=ExtResource("3_41mm0")]
+position = Vector2(0, -23)
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=776452295]
-script = ExtResource("6_2suro")
-
-[node name="Walk" type="Node" parent="StateMachine" unique_id=1939898642]
-script = ExtResource("7_gy3q1")
-
-[node name="Attack" type="Node" parent="StateMachine" unique_id=1507881732]
-script = ExtResource("8_2suro")
-attack_sound = ExtResource("11_ekl84")
-
-[node name="Stun" type="Node" parent="StateMachine" unique_id=722523651]
-script = ExtResource("11_exelp")
-
-[node name="Audio" type="Node2D" parent="." unique_id=772774221]
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio" unique_id=15095843]
-max_polyphony = 4
-
-[node name="HitBox" parent="." unique_id=1887156674 instance=ExtResource("11_vwfor")]
+[node name="HitBox" parent="." unique_id=983766842 instance=ExtResource("11_vwfor")]
+position = Vector2(0, -23)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=937708310]
-position = Vector2(0, 12)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=2140502692]
+position = Vector2(0, 17)
 shape = SubResource("CircleShape2D_oucfp")
 debug_color = Color(0.56197894, 0.5571533, 0.14572686, 0.41960785)
 
-[node name="Interactions" type="Node2D" parent="." unique_id=121030463]
-unique_name_in_owner = true
+[node name="StateMachine" type="Node" parent="." unique_id=1976067012]
+script = ExtResource("7_u3c1g")
 
-[node name="HurtBox" parent="Interactions" unique_id=748073272 instance=ExtResource("11_oucfp")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1092944920]
+script = ExtResource("6_2suro")
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=142194563]
+script = ExtResource("7_gy3q1")
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1228722913]
+script = ExtResource("8_2suro")
+attack_sound = ExtResource("11_ekl84")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1916636438]
+position = Vector2(0, -8)
+offset = Vector2(0, -4)
+
+[node name="Audio" type="Node2D" parent="." unique_id=2075541751]
+position = Vector2(0, -23)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Audio" unique_id=1618167776]
+max_polyphony = 4
+
+[node name="Interactions" type="Node2D" parent="." unique_id=1508150987]
+unique_name_in_owner = true
+position = Vector2(0, -23)
+
+[node name="HurtBox" parent="Interactions" unique_id=1664989607 instance=ExtResource("11_oucfp")]
 position = Vector2(0, 16)
 collision_mask = 256
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox" unique_id=65582600]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox" unique_id=281246918]
 shape = SubResource("CircleShape2D_ekl84")
 debug_color = Color(0.9536719, 0.20807242, 0.16435587, 0.41960785)
 

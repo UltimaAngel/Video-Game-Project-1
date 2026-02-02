@@ -27,7 +27,6 @@ func enter() -> void:
 	attacking = true
 	await get_tree().create_timer(0.075).timeout
 	hurt_box.monitoring = true
-	print("Enter end")
 
 
 # Player exits State
@@ -38,7 +37,6 @@ func exit() -> void:
 	await get_tree().create_timer(0.075).timeout
 	if hurt_box.monitoring == true:
 		hurt_box.monitoring = false
-	print("Exit end")
 
 
 func process(_delta: float) -> State:

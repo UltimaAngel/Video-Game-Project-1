@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://4pqund3nukl7"]
+[gd_scene format=3 uid="uid://4pqund3nukl7"]
 
 [ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://characters/player/scenes/player.tscn" id="1_7aouk"]
 [ext_resource type="Script" uid="uid://b6fbiyjuwntgn" path="res://entities/player/scripts/player.gd" id="2_wowgv"]
@@ -6,47 +6,48 @@
 [ext_resource type="PackedScene" uid="uid://dbqqs3tagpnsr" path="res://props/Objects/plant.tscn" id="3_wowgv"]
 [ext_resource type="PackedScene" uid="uid://canu8q4nsyg2a" path="res://entities/enemies/slime/scenes/slime.tscn" id="3_ykdcs"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=276743591]
 y_sort_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_7aouk")]
+[node name="Player" parent="." unique_id=1082954933 instance=ExtResource("1_7aouk")]
 top_level = false
 position = Vector2(582, 314)
 script = ExtResource("2_wowgv")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2, 2)
+[node name="Map-01" parent="." unique_id=2102652478 instance=ExtResource("3_vv3et")]
 
-[node name="Map-01" parent="." instance=ExtResource("3_vv3et")]
-
-[node name="Plant" parent="." instance=ExtResource("3_wowgv")]
+[node name="Plant" parent="." unique_id=1075092021 instance=ExtResource("3_wowgv")]
 position = Vector2(336, 254)
 
-[node name="Plant2" parent="." instance=ExtResource("3_wowgv")]
+[node name="Plant2" parent="." unique_id=1474523415 instance=ExtResource("3_wowgv")]
 position = Vector2(420, 255)
 
-[node name="Plant3" parent="." instance=ExtResource("3_wowgv")]
+[node name="Plant3" parent="." unique_id=218784375 instance=ExtResource("3_wowgv")]
 position = Vector2(383, 307)
 
-[node name="Plant4" parent="." instance=ExtResource("3_wowgv")]
+[node name="Plant4" parent="." unique_id=1424951865 instance=ExtResource("3_wowgv")]
 position = Vector2(426, 349)
 
-[node name="Plant5" parent="." instance=ExtResource("3_wowgv")]
+[node name="Plant5" parent="." unique_id=1863310130 instance=ExtResource("3_wowgv")]
 position = Vector2(338, 351)
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Enemies" type="Node2D" parent="." unique_id=757466994]
+y_sort_enabled = true
 
-[node name="Slime" parent="Enemies" instance=ExtResource("3_ykdcs")]
+[node name="Slime" parent="Enemies" unique_id=486012637 instance=ExtResource("3_ykdcs")]
 position = Vector2(1048, 330)
 
-[node name="Slime2" parent="Enemies" instance=ExtResource("3_ykdcs")]
+[node name="Slime2" parent="Enemies" unique_id=1458505767 instance=ExtResource("3_ykdcs")]
 position = Vector2(840, 520)
 
-[node name="Slime3" parent="Enemies" instance=ExtResource("3_ykdcs")]
+[node name="Slime3" parent="Enemies" unique_id=1591997113 instance=ExtResource("3_ykdcs")]
 position = Vector2(256, 544)
 
-[node name="Slime4" parent="Enemies" instance=ExtResource("3_ykdcs")]
+[node name="Slime4" parent="Enemies" unique_id=596161835 instance=ExtResource("3_ykdcs")]
 position = Vector2(720, 328)
 
-[node name="Slime5" parent="Enemies" instance=ExtResource("3_ykdcs")]
+[node name="Slime5" parent="Enemies" unique_id=2000123372 instance=ExtResource("3_ykdcs")]
 position = Vector2(72, 88)
+
+[node name="Slime6" parent="Enemies" unique_id=1969547897 instance=ExtResource("3_ykdcs")]
+position = Vector2(381, 288)
