@@ -8,12 +8,19 @@ extends CharacterBody2D
 
 const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 
+# Some variables may need to be @onready instead
 @export var animation_player: AnimationPlayer
+#@export var effect_animation_player: AnimationPlayer
 @export var entity_sprite: Sprite2D
 @export var health_component: HealthComponent
 @export var hit_box: HitBox
 @export var is_invulnerable: bool = false
 @export var state_machine: StateMachine
+
+# Signal used by Player to emit new directions
+signal DirectionChanged(new_direction: Vector2)
+# signal damaged(hurt_box: HurtBox)
+# May not need damaged signal here since it's handled by the health component
 
 var cardinal_direction := Vector2.DOWN:
 	set = set_cardinal_direction
@@ -27,6 +34,7 @@ func _ready():
 		state_machine.initialize(self)
 	if hit_box:
 		hit_box.Damaged.connect(_on_damaged)
+	update_health(99)
 
 
 func _physics_process(_delta):
@@ -51,6 +59,10 @@ func set_cardinal_direction(value: Vector2) -> void:
 func set_direction(value: Vector2) -> void:
 	direction = value
 
+	# Additonal moonwalk prevention
+	#var direction_id: int = int(round((direction + cardinal_direction * 0.1).angle() / TAU * DIR_4.size()))
+	#var new_dir = DIR_4[ direction_id]
+
 	# Keep same sprite direction if player stops moving
 	if value == Vector2.ZERO:
 		return
@@ -74,13 +86,28 @@ func set_direction(value: Vector2) -> void:
 		return
 	cardinal_direction = new_dir
 
+	DirectionChanged.emit(new_dir)
+
 
 func update_animation(state: String) -> void:
 	animation_player.play(state + "_" + anim_direction)
 
 
-func _on_damaged(damage_taken: int) -> void:
+func _on_damaged(hurt_box: HurtBox) -> void:
 	if is_invulnerable == true:
 		return
 	if health_component:
-		health_component.damage(damage_taken)
+		health_component.damage(hurt_box)
+
+
+func update_health(delta: int) -> void:
+	if health_component:
+		health_component.update(delta)
+
+
+func make_invulnerable(_duration: float) -> void:
+	is_invulnerable = true
+	hit_box.monitoring = false
+	await get_tree().create_timer(_duration).timeout
+	is_invulnerable = false
+	hit_box.monitoring = true

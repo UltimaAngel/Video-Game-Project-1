@@ -6,6 +6,7 @@ extends Node
 
 # Reference to Entity the State belongs to
 var entity: Entity
+var state_machine: StateMachine
 
 
 func _ready() -> void:
