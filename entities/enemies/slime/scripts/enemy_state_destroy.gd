@@ -3,6 +3,7 @@ extends State
 @export var knockback_speed: float = 400.0
 @export var decelerate_speed: float = 10.0
 
+var _damage_position: Vector2
 var _direction := Vector2.ZERO
 
 
@@ -12,7 +13,7 @@ func init() -> void:
 
 func enter() -> void:
 	entity.is_invulnerable = true
-	_direction = entity.global_position.direction_to(PlayerManager.player.global_position)
+	_direction = entity.global_position.direction_to(_damage_position)
 	entity.direction = _direction
 	entity.velocity = _direction * -knockback_speed
 	entity.update_animation(anim_name)
@@ -24,7 +25,8 @@ func process(delta: float) -> State:
 	return null
 
 
-func _on_destroyed() -> void:
+func _on_destroyed(hurt_box: HurtBox) -> void:
+	_damage_position = hurt_box.global_position
 	get_parent().change_state(self)
 
 

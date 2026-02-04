@@ -12,6 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://bihc3ics5ekta" path="res://entities/player/assets/sword_swoosh.wav" id="11_ekl84"]
 [ext_resource type="PackedScene" uid="uid://bha3le6ms846r" path="res://components/hurtboxes/hurt_box.tscn" id="11_oucfp"]
 [ext_resource type="PackedScene" uid="uid://bw04c753lmlf3" path="res://components/hitboxes/hit_box.tscn" id="11_vwfor"]
+[ext_resource type="Script" uid="uid://cqp7jsw83yljy" path="res://entities/player/scripts/state_stun.gd" id="12_vwfor"]
+[ext_resource type="AudioStream" uid="uid://beachdr1o4jr" path="res://entities/player/assets/hit_player.wav" id="13_ekl84"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ittr2"]
 radius = 8.062258
@@ -427,12 +429,78 @@ _data = {
 &"walk_up": SubResource("Animation_2kdo7")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vgqql"]
-radius = 13.0
-height = 44.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_oucfp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ekl84"]
 radius = 20.0
+
+[sub_resource type="Animation" id="Animation_exelp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_33iwi"]
+resource_name = "damaged"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 1), Color(1, 1, 1, 0.19607843), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_ekl84")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_vwfor"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pt0jy"]
+_data = {
+&"RESET": SubResource("Animation_exelp"),
+&"damaged": SubResource("Animation_33iwi"),
+&"default": SubResource("Animation_vwfor")
+}
 
 [node name="Player" type="CharacterBody2D" unique_id=1951096566 node_paths=PackedStringArray("animation_player", "entity_sprite", "health_component", "hit_box", "state_machine")]
 top_level = true
@@ -478,10 +546,12 @@ position = Vector2(0, -23)
 
 [node name="HitBox" parent="." unique_id=983766842 instance=ExtResource("11_vwfor")]
 position = Vector2(0, -23)
-collision_layer = 1
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=2140502692]
-shape = SubResource("CapsuleShape2D_vgqql")
+position = Vector2(0, 12)
+shape = SubResource("CircleShape2D_oucfp")
+debug_color = Color(0.56197894, 0.5571533, 0.14572686, 0.41960785)
 
 [node name="StateMachine" type="Node" parent="." unique_id=1976067012]
 script = ExtResource("7_u3c1g")
@@ -495,6 +565,9 @@ script = ExtResource("7_gy3q1")
 [node name="Attack" type="Node" parent="StateMachine" unique_id=1228722913]
 script = ExtResource("8_2suro")
 attack_sound = ExtResource("11_ekl84")
+
+[node name="Stun" type="Node" parent="StateMachine" unique_id=862125443]
+script = ExtResource("12_vwfor")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1916636438]
 position = Vector2(0, -8)
@@ -518,3 +591,6 @@ monitoring = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/HurtBox" unique_id=281246918]
 shape = SubResource("CircleShape2D_ekl84")
 debug_color = Color(0.9536719, 0.20807242, 0.16435587, 0.41960785)
+
+[node name="EffectAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1411569256]
+libraries/ = SubResource("AnimationLibrary_pt0jy")

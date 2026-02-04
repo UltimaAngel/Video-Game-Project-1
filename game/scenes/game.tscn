@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://4pqund3nukl7"]
 
-[ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://entities/player/scenes/player.tscn" id="1_7aouk"]
+[ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://characters/player/scenes/player.tscn" id="1_7aouk"]
+[ext_resource type="Script" uid="uid://b6fbiyjuwntgn" path="res://entities/player/scripts/player.gd" id="2_wowgv"]
 [ext_resource type="PackedScene" uid="uid://clc62kh1t0g6n" path="res://dungeon/map_01.tscn" id="3_vv3et"]
 [ext_resource type="PackedScene" uid="uid://dbqqs3tagpnsr" path="res://props/Objects/plant.tscn" id="3_wowgv"]
 
@@ -10,6 +11,7 @@ y_sort_enabled = true
 [node name="Player" parent="." unique_id=1082954933 instance=ExtResource("1_7aouk")]
 top_level = false
 position = Vector2(582, 314)
+script = ExtResource("2_wowgv")
 
 [node name="Map-01" parent="." unique_id=2102652478 instance=ExtResource("3_vv3et")]
 
