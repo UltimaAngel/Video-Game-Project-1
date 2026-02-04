@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bihc3ics5ekta" path="res://entities/player/assets/sword_swoosh.wav" id="11_ekl84"]
 [ext_resource type="PackedScene" uid="uid://bha3le6ms846r" path="res://components/hurtboxes/hurt_box.tscn" id="11_oucfp"]
 [ext_resource type="PackedScene" uid="uid://bw04c753lmlf3" path="res://components/hitboxes/hit_box.tscn" id="11_vwfor"]
+[ext_resource type="Script" uid="uid://cqp7jsw83yljy" path="res://entities/player/scripts/state_stun.gd" id="12_vwfor"]
 [ext_resource type="AudioStream" uid="uid://beachdr1o4jr" path="res://entities/player/assets/hit_player.wav" id="13_ekl84"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ittr2"]
@@ -548,7 +549,7 @@ position = Vector2(0, -23)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=2140502692]
-position = Vector2(0, 17)
+position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_oucfp")
 debug_color = Color(0.56197894, 0.5571533, 0.14572686, 0.41960785)
 
@@ -564,6 +565,9 @@ script = ExtResource("7_gy3q1")
 [node name="Attack" type="Node" parent="StateMachine" unique_id=1228722913]
 script = ExtResource("8_2suro")
 attack_sound = ExtResource("11_ekl84")
+
+[node name="Stun" type="Node" parent="StateMachine" unique_id=862125443]
+script = ExtResource("12_vwfor")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1916636438]
 position = Vector2(0, -8)
