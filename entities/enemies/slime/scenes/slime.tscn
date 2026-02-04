@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://canu8q4nsyg2a"]
+[gd_scene format=3 uid="uid://canu8q4nsyg2a"]
 
 [ext_resource type="Texture2D" uid="uid://mklv7yqx13jf" path="res://entities/enemies/slime/assets/slime.png" id="1_2mbw8"]
 [ext_resource type="Script" uid="uid://b6gjws1li2gd1" path="res://entities/scripts/entity.gd" id="1_6xq2y"]
@@ -721,7 +721,7 @@ _data = {
 &"destroy": SubResource("Animation_2ipdc")
 }
 
-[node name="Slime" type="CharacterBody2D" node_paths=PackedStringArray("animation_player", "entity_sprite", "health_component", "hit_box", "state_machine")]
+[node name="Slime" type="CharacterBody2D" unique_id=418509063 node_paths=PackedStringArray("animation_player", "entity_sprite", "health_component", "hit_box", "state_machine")]
 collision_layer = 256
 collision_mask = 16
 script = ExtResource("1_6xq2y")
@@ -731,80 +731,76 @@ health_component = NodePath("HealthComponent")
 hit_box = NodePath("HitBox")
 state_machine = NodePath("EnemyStateMachine")
 
-[node name="HitBox" parent="." instance=ExtResource("3_v17ds")]
+[node name="HitBox" parent="." unique_id=1965179125 instance=ExtResource("3_v17ds")]
 position = Vector2(0, -5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=536684425]
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_jy1ul")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=701307054]
 position = Vector2(0, -24)
 texture = ExtResource("1_2mbw8")
 hframes = 16
 vframes = 2
 
-[node name="ShadowSprite2D" type="Sprite2D" parent="Sprite2D"]
+[node name="ShadowSprite2D" type="Sprite2D" parent="Sprite2D" unique_id=681001378]
 modulate = Color(0.5411765, 0.21176471, 0, 1)
 show_behind_parent = true
 position = Vector2(0, 19)
 texture = ExtResource("1_ncw7u")
 
-[node name="HurtBox" parent="." instance=ExtResource("2_jy1ul")]
+[node name="HurtBox" parent="." unique_id=1210229056 instance=ExtResource("2_jy1ul")]
 position = Vector2(0, -5)
 collision_mask = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=2003816949]
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_jy1ul")
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_co1cg")]
+[node name="HealthComponent" parent="." unique_id=702749608 instance=ExtResource("2_co1cg")]
 position = Vector2(0, -5)
 _max_health = 5.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1286514649]
 position = Vector2(0, -5)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_umckf")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_6xq2y")
-}
-autoplay = "idle_down"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=178321298]
+libraries/ = SubResource("AnimationLibrary_6xq2y")
+autoplay = &"idle_down"
 
-[node name="EnemyStateMachine" type="Node" parent="."]
+[node name="EnemyStateMachine" type="Node" parent="." unique_id=17017768]
 script = ExtResource("6_fbeu0")
 
-[node name="Idle" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
+[node name="Idle" type="Node" parent="EnemyStateMachine" unique_id=131144076 node_paths=PackedStringArray("next_state")]
 script = ExtResource("7_nly76")
 next_state = NodePath("../Wander")
 
-[node name="Wander" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
+[node name="Wander" type="Node" parent="EnemyStateMachine" unique_id=1238945714 node_paths=PackedStringArray("next_state")]
 script = ExtResource("8_8hb4w")
 anim_name = "wander"
 next_state = NodePath("../Idle")
 
-[node name="Stun" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
+[node name="Stun" type="Node" parent="EnemyStateMachine" unique_id=944901807 node_paths=PackedStringArray("next_state")]
 script = ExtResource("11_jy1ul")
 anim_name = "stun"
 next_state = NodePath("../Idle")
 
-[node name="Destroy" type="Node" parent="EnemyStateMachine"]
+[node name="Destroy" type="Node" parent="EnemyStateMachine" unique_id=383251285]
 script = ExtResource("13_jy1ul")
 anim_name = "destroy"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=66726656]
 position = Vector2(0, -5)
 max_polyphony = 4
 
-[node name="DestroyEffectSprite" type="Sprite2D" parent="."]
+[node name="DestroyEffectSprite" type="Sprite2D" parent="." unique_id=1554147823]
 visible = false
 position = Vector2(0, -8)
 texture = ExtResource("11_h77dj")
 hframes = 6
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DestroyEffectSprite"]
-libraries = {
-&"": SubResource("AnimationLibrary_4kmju")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DestroyEffectSprite" unique_id=1661253699]
+libraries/ = SubResource("AnimationLibrary_4kmju")
