@@ -34,7 +34,6 @@ func _on_timer_timeout():
 			if _map.get_cell_tile_data(rand_pos).get_collision_polygons_count(0) == 0:
 				break
 		var slime: Entity = enemy.instantiate()
-		print(16 * Vector2(rand_pos))
 		slime.global_position = 16 * Vector2(rand_pos)
 		add_child(slime)
 	_wave_num += 1

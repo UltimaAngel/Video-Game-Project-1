@@ -804,6 +804,3 @@ y_sort_enabled = true
 script = ExtResource("2_cw28q")
 enemy = ExtResource("3_o4jrv")
 enemy_num = 3
-
-[node name="Slime" parent="SpawnManager" unique_id=1513585146 instance=ExtResource("3_o4jrv")]
-position = Vector2(753, 326)
