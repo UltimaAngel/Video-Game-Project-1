@@ -802,5 +802,5 @@ tile_set = SubResource("TileSet_x7fwn")
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("2_cw28q")
-enemy = ExtResource("3_o4jrv")
+enemy_array = Array[PackedScene]([ExtResource("3_o4jrv")])
 enemy_num = 3
