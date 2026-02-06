@@ -47,8 +47,8 @@ func _on_timer_timeout():
 				break
 		var rand_enemy: Entity = enemy_array.pick_random().instantiate()
 		rand_enemy.global_position = _tile_length * Vector2(rand_pos)
-		add_child(rand_enemy)
 		rand_enemy.health_component.destroyed.connect(_on_rand_enemy_destroyed)
+		add_child(rand_enemy)
 	wave_num += 1
 	if wave_num == max_waves:
 		_timer.stop()
