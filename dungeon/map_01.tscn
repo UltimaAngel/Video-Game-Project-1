@@ -799,6 +799,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAASAAAAAAAAAAEAAAASAAEAAAAAAAIAAAASAAI
 tile_set = SubResource("TileSet_x7fwn")
 
 [node name="SpawnManager" type="Node2D" parent="." unique_id=945857269]
+unique_name_in_owner = true
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("2_cw28q")
