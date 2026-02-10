@@ -4,7 +4,6 @@ extends State
 @export var knockback_speed: float = 400.0
 @export var decelerate_speed: float = 10.0
 
-var _damage_position: Vector2
 var _direction := Vector2.ZERO
 var _is_anim_finished: bool = false
 

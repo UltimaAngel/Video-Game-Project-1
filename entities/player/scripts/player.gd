@@ -1,6 +1,9 @@
 class_name Player
 extends Entity
 
+# The solution for issue 57 already stores a reference to the hurt box in the Entity class.
+# After the issue 57 solution is merged into main, be sure to delete the line below, and the rest
+# should be fine when merging main into this branch
 @export var hurt_box: HurtBox
 
 @onready var interactions: Node = get_node("Interactions")
