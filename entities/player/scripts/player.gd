@@ -1,9 +1,32 @@
 class_name Player
 extends Entity
 
+@export var hurt_box: HurtBox
+
 @onready var interactions: Node = get_node("Interactions")
 @onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
 # May not need effect animation player here, but it may be specific to Player
+
+
+func _ready():
+	PlayerManager.player = self
+	#if health_component:
+	#health_component.destroyed.connect(_on_destroyed)
+	if hit_box:
+		hit_box.Damaged.connect(_on_damaged)
+	if state_machine:
+		state_machine.initialize(self)
+	hurt_box.melee_attack.connect(_on_melee_attack)
+
+	#func _on_destroyed():
+	#queue_free()
+
+
+func _process(_delta):
+	var new_dir: Vector2
+	new_dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
+	new_dir.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	direction = new_dir.normalized()
 
 
 func set_cardinal_direction(value: Vector2) -> void:
@@ -29,21 +52,5 @@ func set_cardinal_direction(value: Vector2) -> void:
 			interactions.rotation_degrees = 0
 
 
-func _process(_delta):
-	var new_dir: Vector2
-	new_dir.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	new_dir.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-	direction = new_dir.normalized()
-
-
-func _ready():
-	PlayerManager.player = self
-	#if health_component:
-	#health_component.destroyed.connect(_on_destroyed)
-	if hit_box:
-		hit_box.Damaged.connect(_on_damaged)
-	if state_machine:
-		state_machine.initialize(self)
-
-	#func _on_destroyed():
-	#queue_free()
+func _on_melee_attack() -> void:
+	hurt_box.direction = cardinal_direction
