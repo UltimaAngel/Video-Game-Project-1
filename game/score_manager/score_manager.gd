@@ -14,6 +14,7 @@ func _ready():
 
 func _on_map_ready():
 	_map.get_node("%SpawnManager").spawned_enemy_removed.connect(_on_spawned_enemy_removed)
+	map_winning_score = _map.winning_score
 
 
 func _on_spawned_enemy_removed():
