@@ -13,6 +13,7 @@ func init() -> void:
 
 func enter() -> void:
 	entity.is_invulnerable = true
+	entity.hurt_box.monitoring = false
 	_direction = entity.global_position.direction_to(_damage_position)
 	entity.direction = _direction
 	entity.velocity = _direction * -knockback_speed
