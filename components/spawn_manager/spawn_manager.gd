@@ -1,3 +1,4 @@
+class_name SpawnManager
 extends Node2D
 
 signal spawned_enemy_removed
