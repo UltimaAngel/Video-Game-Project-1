@@ -12,6 +12,7 @@ func init() -> void:
 
 func enter() -> void:
 	entity.is_invulnerable = true
+	entity.hurt_box.monitoring = false
 	entity.direction = _direction
 	entity.velocity = _direction * -knockback_speed
 	entity.update_animation(anim_name)
