@@ -502,10 +502,11 @@ _data = {
 &"default": SubResource("Animation_vwfor")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=1951096566 node_paths=PackedStringArray("animation_player", "entity_sprite", "health_component", "hit_box", "state_machine")]
+[node name="Player" type="CharacterBody2D" unique_id=1951096566 node_paths=PackedStringArray("hurt_box", "animation_player", "entity_sprite", "health_component", "hit_box", "state_machine")]
 top_level = true
 collision_mask = 19
 script = ExtResource("1_cvnsp")
+hurt_box = NodePath("Interactions/HurtBox")
 animation_player = NodePath("AnimationPlayer")
 entity_sprite = NodePath("Sprite2D")
 health_component = NodePath("HealthComponent")
