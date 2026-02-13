@@ -1,3 +1,4 @@
+class_name ScoreManager
 extends Node
 
 @export var _map: TileMapLayer
