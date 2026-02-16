@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://li85dlmnyiwp" path="res://dungeon/map_01.gd" id="2_b340g"]
 [ext_resource type="Script" uid="uid://07cfy4chih12" path="res://components/spawn_manager/spawn_manager.gd" id="2_cw28q"]
 [ext_resource type="PackedScene" uid="uid://canu8q4nsyg2a" path="res://entities/enemies/slime/scenes/slime.tscn" id="3_o4jrv"]
+[ext_resource type="PackedScene" uid="uid://dbqqs3tagpnsr" path="res://props/Objects/plant.tscn" id="5_tdn30"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2jc5b"]
 texture = ExtResource("1_wk8xt")
@@ -809,3 +810,22 @@ enemy_array = Array[PackedScene]([ExtResource("3_o4jrv")])
 enemy_num = 5
 max_waves = 5
 min_spawn_break = 10.0
+
+[node name="Props" type="Node2D" parent="." unique_id=444882589]
+z_as_relative = false
+y_sort_enabled = true
+
+[node name="Plant" parent="Props" unique_id=578214545 instance=ExtResource("5_tdn30")]
+position = Vector2(336, 254)
+
+[node name="Plant2" parent="Props" unique_id=312014177 instance=ExtResource("5_tdn30")]
+position = Vector2(420, 255)
+
+[node name="Plant3" parent="Props" unique_id=1578322363 instance=ExtResource("5_tdn30")]
+position = Vector2(383, 307)
+
+[node name="Plant4" parent="Props" unique_id=1721095973 instance=ExtResource("5_tdn30")]
+position = Vector2(426, 349)
+
+[node name="Plant5" parent="Props" unique_id=1550937422 instance=ExtResource("5_tdn30")]
+position = Vector2(338, 351)
