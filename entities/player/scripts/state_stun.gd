@@ -6,6 +6,7 @@ var _prev_dir := Vector2.ZERO
 @export var move_speed: float = 100.0
 @export var invulnerable_duration: float = 0.5
 
+#hurt box and direction may not actually be used here
 var hurt_box: HurtBox
 var direction: Vector2
 
@@ -22,6 +23,7 @@ func init() -> void:
 func enter() -> void:
 	entity.update_animation("walk")
 	entity.effect_animation_player.play("damaged")
+	#Don't wait until the animation to finish to kill the player
 	entity.effect_animation_player.animation_finished.connect(_animation_finished)
 	entity.make_invulnerable(invulnerable_duration)
 
@@ -30,8 +32,6 @@ func enter() -> void:
 func exit() -> void:
 	next_state = null
 	entity.effect_animation_player.animation_finished.disconnect(_animation_finished)
-	if entity.health_component._health <= 0:
-		next_state = death
 
 
 func process(_delta: float) -> State:
@@ -53,8 +53,9 @@ func physics(_delta: float) -> State:
 func handle_input(_event: InputEvent) -> State:
 	# Can still attack when in stun state
 	# Early exit check or preventing attacking in this state may be better
-	if _event.is_action_pressed("click"):
-		return attack
+	if entity.health_component._health > 0:
+		if _event.is_action_pressed("click"):
+			return attack
 	return null
 
 
@@ -68,4 +69,3 @@ func _animation_finished(_a: String) -> void:
 	next_state = idle
 	if entity.health_component._health <= 0:
 		next_state = death
-		print("Animation FIN", next_state)

@@ -11,7 +11,6 @@ func init() -> void:
 
 # Entity enters State
 func enter() -> void:
-	print("DEATH")
 	entity.animation_player.play("death")
 	audio.stream = death_audio
 	audio.play()
