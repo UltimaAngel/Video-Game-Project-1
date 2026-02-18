@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://clc62kh1t0g6n" path="res://dungeon/map_01.tscn" id="3_u5opy"]
 [ext_resource type="Script" uid="uid://dvutwkt358wf5" path="res://game/score_manager/score_manager.gd" id="4_y36n6"]
 [ext_resource type="FontFile" uid="uid://ci5846qveyr3r" path="res://fonts/Abaddon Bold.ttf" id="5_dxrkv"]
-[ext_resource type="PackedScene" uid="uid://dbqqs3tagpnsr" path="res://props/Objects/plant.tscn" id="5_l8g03"]
 
 [node name="Game" type="Node2D" unique_id=276743591]
 y_sort_enabled = true
@@ -19,21 +18,6 @@ top_level = false
 position = Vector2(582, 314)
 
 [node name="Map-01" parent="." unique_id=2102652478 instance=ExtResource("3_u5opy")]
-
-[node name="Plant" parent="." unique_id=1075092021 instance=ExtResource("5_l8g03")]
-position = Vector2(336, 254)
-
-[node name="Plant2" parent="." unique_id=1474523415 instance=ExtResource("5_l8g03")]
-position = Vector2(420, 255)
-
-[node name="Plant3" parent="." unique_id=218784375 instance=ExtResource("5_l8g03")]
-position = Vector2(383, 307)
-
-[node name="Plant4" parent="." unique_id=1424951865 instance=ExtResource("5_l8g03")]
-position = Vector2(426, 349)
-
-[node name="Plant5" parent="." unique_id=1863310130 instance=ExtResource("5_l8g03")]
-position = Vector2(338, 351)
 
 [node name="Label" type="Label" parent="." unique_id=1830645271]
 visible = false
