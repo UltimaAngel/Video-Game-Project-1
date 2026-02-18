@@ -100,7 +100,7 @@ func _on_damaged(hurt_box: HurtBox) -> void:
 		health_component.damage(hurt_box)
 
 
-func update_health(delta: int) -> void:
+func update_health(delta: float) -> void:
 	if health_component:
 		health_component.update(delta)
 
@@ -111,3 +111,9 @@ func make_invulnerable(_duration: float) -> void:
 	await get_tree().create_timer(_duration).timeout
 	is_invulnerable = false
 	hit_box.monitoring = true
+
+
+func revive_entity() -> void:
+	# May need to set health to max rather than update
+	update_health(self.health_component._max_health)
+	state_machine.change_state($StateMachine/Idle)

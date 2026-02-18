@@ -11,6 +11,7 @@ var direction: Vector2
 
 @onready var idle: State = $"../Idle"
 @onready var attack: State = $"../Attack"
+@onready var death: State = $"../Death"
 
 
 func init() -> void:
@@ -19,7 +20,6 @@ func init() -> void:
 
 # Player enters State
 func enter() -> void:
-	# May need to use other animations depending on entered state
 	entity.update_animation("walk")
 	entity.effect_animation_player.play("damaged")
 	entity.effect_animation_player.animation_finished.connect(_animation_finished)
@@ -30,18 +30,19 @@ func enter() -> void:
 func exit() -> void:
 	next_state = null
 	entity.effect_animation_player.animation_finished.disconnect(_animation_finished)
+	if entity.health_component._health <= 0:
+		next_state = death
 
 
 func process(_delta: float) -> State:
 	if entity.direction == Vector2.ZERO:
-		return idle
+		entity.update_animation("idle")
 
 	entity.velocity = entity.direction * move_speed
 
 	if entity.direction != _prev_dir:
 		entity.update_animation("walk")
 	_prev_dir = entity.direction
-	#return null
 	return next_state
 
 
@@ -50,6 +51,8 @@ func physics(_delta: float) -> State:
 
 
 func handle_input(_event: InputEvent) -> State:
+	# Can still attack when in stun state
+	# Early exit check or preventing attacking in this state may be better
 	if _event.is_action_pressed("click"):
 		return attack
 	return null
@@ -57,9 +60,12 @@ func handle_input(_event: InputEvent) -> State:
 
 func _entity_damaged(_hurt_box: HurtBox) -> void:
 	hurt_box = _hurt_box
-	state_machine.change_state(self)
+	if state_machine.current_state != death:
+		state_machine.change_state(self)
 
 
 func _animation_finished(_a: String) -> void:
-	# Next state is always idle, may want it to be different depending on enetered state
 	next_state = idle
+	if entity.health_component._health <= 0:
+		next_state = death
+		print("Animation FIN", next_state)
