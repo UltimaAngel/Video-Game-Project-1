@@ -721,7 +721,7 @@ _data = {
 &"destroy": SubResource("Animation_2ipdc")
 }
 
-[node name="Slime" type="CharacterBody2D" unique_id=1513585146 node_paths=PackedStringArray("animation_player", "entity_sprite", "health_component", "hit_box", "state_machine")]
+[node name="Slime" type="CharacterBody2D" unique_id=1513585146 node_paths=PackedStringArray("animation_player", "entity_sprite", "health_component", "hit_box", "hurt_box", "state_machine")]
 collision_layer = 256
 collision_mask = 16
 script = ExtResource("1_6xq2y")
@@ -729,6 +729,7 @@ animation_player = NodePath("AnimationPlayer")
 entity_sprite = NodePath("Sprite2D")
 health_component = NodePath("HealthComponent")
 hit_box = NodePath("HitBox")
+hurt_box = NodePath("HurtBox")
 state_machine = NodePath("EnemyStateMachine")
 
 [node name="HitBox" parent="." unique_id=1135316748 instance=ExtResource("3_v17ds")]

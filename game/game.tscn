@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://4pqund3nukl7"]
+
+[ext_resource type="PackedScene" uid="uid://bo0pwsa6hw5ue" path="res://entities/player/scenes/player.tscn" id="2_dakft"]
+[ext_resource type="PackedScene" uid="uid://clc62kh1t0g6n" path="res://dungeon/map_01.tscn" id="3_u5opy"]
+[ext_resource type="Script" uid="uid://dvutwkt358wf5" path="res://game/score_manager/score_manager.gd" id="4_y36n6"]
+[ext_resource type="FontFile" uid="uid://ci5846qveyr3r" path="res://fonts/Abaddon Bold.ttf" id="5_dxrkv"]
+
+[node name="Game" type="Node2D" unique_id=276743591]
+y_sort_enabled = true
+
+[node name="ScoreManager" type="Node" parent="." unique_id=6458180 node_paths=PackedStringArray("_map", "_win_text")]
+script = ExtResource("4_y36n6")
+_map = NodePath("../Map-01")
+_win_text = NodePath("../Label")
+
+[node name="Player" parent="." unique_id=1082954933 instance=ExtResource("2_dakft")]
+top_level = false
+position = Vector2(582, 314)
+
+[node name="Map-01" parent="." unique_id=2102652478 instance=ExtResource("3_u5opy")]
+
+[node name="Label" type="Label" parent="." unique_id=1830645271]
+visible = false
+top_level = true
+offset_right = 217.0
+offset_bottom = 68.0
+theme_override_fonts/font = ExtResource("5_dxrkv")
+theme_override_font_sizes/font_size = 60
+text = "YOU WIN!"

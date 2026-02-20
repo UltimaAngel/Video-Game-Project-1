@@ -14,6 +14,7 @@ const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 @export var entity_sprite: Sprite2D
 @export var health_component: HealthComponent
 @export var hit_box: HitBox
+@export var hurt_box: HurtBox
 @export var is_invulnerable: bool = false
 @export var state_machine: StateMachine
 
