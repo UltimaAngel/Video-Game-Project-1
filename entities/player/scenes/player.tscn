@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bw04c753lmlf3" path="res://components/hitboxes/hit_box.tscn" id="11_vwfor"]
 [ext_resource type="Script" uid="uid://cqp7jsw83yljy" path="res://entities/player/scripts/state_stun.gd" id="12_vwfor"]
 [ext_resource type="AudioStream" uid="uid://beachdr1o4jr" path="res://entities/player/assets/hit_player.wav" id="13_ekl84"]
+[ext_resource type="Script" uid="uid://dv8gwkxct5udq" path="res://entities/player/scripts/state_death.gd" id="13_exelp"]
+[ext_resource type="AudioStream" uid="uid://dk3yarmqvn6sl" path="res://entities/assets/Demoman_paincrticialdeath01.wav" id="14_33iwi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ittr2"]
 radius = 8.062258
@@ -313,6 +315,23 @@ tracks/0/keys = {
 "values": [24, 26]
 }
 
+[sub_resource type="Animation" id="Animation_pt0jy"]
+resource_name = "death"
+length = 2.0
+step = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_ittr2"]
 resource_name = "idle_down"
 length = 0.4
@@ -421,6 +440,7 @@ _data = {
 &"attack_down": SubResource("Animation_gy3q1"),
 &"attack_side": SubResource("Animation_3mujp"),
 &"attack_up": SubResource("Animation_xvinq"),
+&"death": SubResource("Animation_pt0jy"),
 &"idle_down": SubResource("Animation_ittr2"),
 &"idle_side": SubResource("Animation_ejf8q"),
 &"idle_up": SubResource("Animation_2pynv"),
@@ -569,6 +589,10 @@ attack_sound = ExtResource("11_ekl84")
 
 [node name="Stun" type="Node" parent="StateMachine" unique_id=862125443]
 script = ExtResource("12_vwfor")
+
+[node name="Death" type="Node" parent="StateMachine" unique_id=770125279]
+script = ExtResource("13_exelp")
+death_audio = ExtResource("14_33iwi")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1916636438]
 position = Vector2(0, -8)
