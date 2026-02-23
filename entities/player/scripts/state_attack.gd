@@ -23,8 +23,10 @@ func enter() -> void:
 	audio.stream = attack_sound
 	audio.pitch_scale = randf_range(0.9, 1.1)
 	audio.play()
+	audio.pitch_scale = randf_range(1.0, 1.0)
 
 	attacking = true
+	entity.direction_lock = true
 	await get_tree().create_timer(0.075).timeout
 	hurt_box.monitoring = true
 
@@ -33,6 +35,7 @@ func enter() -> void:
 func exit() -> void:
 	animation_player.animation_finished.disconnect(end_attack)
 	attacking = false
+	entity.direction_lock = false
 	hurt_box.monitoring = false
 	await get_tree().create_timer(0.075).timeout
 	if hurt_box.monitoring == true:
@@ -60,3 +63,4 @@ func handle_input(_event: InputEvent) -> State:
 
 func end_attack(_newAnimName: String) -> void:
 	attacking = false
+	entity.direction_lock = false

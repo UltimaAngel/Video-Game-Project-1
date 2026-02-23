@@ -17,6 +17,7 @@ const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 @export var hurt_box: HurtBox
 @export var is_invulnerable: bool = false
 @export var state_machine: StateMachine
+@export var direction_lock: bool = false
 
 # Signal used by Player to emit new directions
 signal DirectionChanged(new_direction: Vector2)

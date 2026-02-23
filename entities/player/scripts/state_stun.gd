@@ -23,7 +23,6 @@ func init() -> void:
 func enter() -> void:
 	entity.update_animation("walk")
 	entity.effect_animation_player.play("damaged")
-	#Don't wait until the animation to finish to kill the player
 	entity.effect_animation_player.animation_finished.connect(_animation_finished)
 	entity.make_invulnerable(invulnerable_duration)
 
@@ -51,8 +50,6 @@ func physics(_delta: float) -> State:
 
 
 func handle_input(_event: InputEvent) -> State:
-	# Can still attack when in stun state
-	# Early exit check or preventing attacking in this state may be better
 	if entity.health_component._health > 0:
 		if _event.is_action_pressed("click"):
 			return attack
