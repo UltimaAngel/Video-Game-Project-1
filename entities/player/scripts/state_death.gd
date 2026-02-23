@@ -11,6 +11,7 @@ func init() -> void:
 
 # Entity enters State
 func enter() -> void:
+	entity.direction_lock = true
 	entity.animation_player.play("death")
 	audio.stream = death_audio
 	audio.play()
@@ -19,6 +20,7 @@ func enter() -> void:
 
 # Entity exits State
 func exit() -> void:
+	entity.direction_lock = false
 	audio.finished.disconnect(_end_death)
 
 

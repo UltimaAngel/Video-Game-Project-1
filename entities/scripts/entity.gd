@@ -17,6 +17,7 @@ const DIR_4 = [Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP]
 @export var hurt_box: HurtBox
 @export var is_invulnerable: bool = false
 @export var state_machine: StateMachine
+@export var direction_lock: bool = false
 
 # Signal used by Player to emit new directions
 signal DirectionChanged(new_direction: Vector2)
@@ -94,11 +95,11 @@ func update_animation(state: String) -> void:
 	animation_player.play(state + "_" + anim_direction)
 
 
-func _on_damaged(hurt_box: HurtBox) -> void:
+func _on_damaged(opposing_hurt_box: HurtBox) -> void:
 	if is_invulnerable == true:
 		return
 	if health_component:
-		health_component.damage(hurt_box)
+		health_component.damage(opposing_hurt_box)
 
 
 func update_health(delta: float) -> void:
