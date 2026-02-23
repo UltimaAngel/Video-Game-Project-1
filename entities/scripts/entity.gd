@@ -95,11 +95,11 @@ func update_animation(state: String) -> void:
 	animation_player.play(state + "_" + anim_direction)
 
 
-func _on_damaged(hurt_box: HurtBox) -> void:
+func _on_damaged(opposing_hurt_box: HurtBox) -> void:
 	if is_invulnerable == true:
 		return
 	if health_component:
-		health_component.damage(hurt_box)
+		health_component.damage(opposing_hurt_box)
 
 
 func update_health(delta: float) -> void:
