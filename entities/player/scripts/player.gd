@@ -35,12 +35,16 @@ func set_direction(value: Vector2) -> void:
 
 	match value:
 		Vector2.DOWN:
+			anim_direction = "down"
 			interactions.rotation_degrees = 0
 		Vector2.UP:
+			anim_direction = "up"
 			interactions.rotation_degrees = 180
 		Vector2.LEFT:
+			anim_direction = "side"
 			interactions.rotation_degrees = 90
 		Vector2.RIGHT:
+			anim_direction = "side"
 			interactions.rotation_degrees = -90
 		Vector2.DOWN + Vector2.LEFT:
 			interactions.rotation_degrees = 45
@@ -80,17 +84,6 @@ func set_cardinal_direction(value: Vector2) -> void:
 	# Scale the player sprite across x axis. This particular method allows us to
 	# also "flip" children of Sprite2D node.
 	entity_sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
-	match value:
-		Vector2.DOWN:
-			anim_direction = "down"
-		Vector2.UP:
-			anim_direction = "up"
-		Vector2.LEFT:
-			anim_direction = "side"
-		Vector2.RIGHT:
-			anim_direction = "side"
-		_:
-			anim_direction = "down"
 
 
 func _on_melee_attack() -> void:
