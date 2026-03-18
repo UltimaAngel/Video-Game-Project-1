@@ -1,0 +1,11 @@
+This Godot project is a 2D action‑adventure RPG in which the player must survive successive enemy waves while completing objectives between waves to advance the narrative. The development effort is designed to showcase our abilities to work collaboratively, follow the Godot engine’s best‑practice guidelines, and apply solid software‑design principles. We employ UML diagrams, object‑oriented programming techniques, and appropriate design patterns to ensure code that is maintainable and modular.
+
+Current features of this game include:
+- A controllable Player character (mouse + keyboard; gamepad controller)
+- Melee combat with 8-directions of attack
+- Idle, Walk, Attack, and Death animations
+- A dungeon map
+- A breakable bush prop
+- A Slime enemy that wanders randomly
+- Random enemy spawn points
+- A victory message upon a certain number of points earned from killing enemies
